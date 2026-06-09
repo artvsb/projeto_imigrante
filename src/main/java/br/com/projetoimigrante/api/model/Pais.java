@@ -1,5 +1,6 @@
 package br.com.projetoimigrante.api.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -20,5 +21,6 @@ public class Pais {
 
 	@ManyToOne
 	@JoinColumn(name = "id_regiao", nullable = false)
+	@JsonIgnoreProperties("paises")
 	private Regiao regiao;
 }

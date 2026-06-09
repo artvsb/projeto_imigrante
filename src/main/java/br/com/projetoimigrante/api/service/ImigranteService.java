@@ -1,8 +1,14 @@
 package br.com.projetoimigrante.api.service;
 
-import br.com.projetoimigrante.api.enums.TipoMigranteEnum;
+import br.com.projetoimigrante.api.dto.ImigranteRequestDTO;
+import br.com.projetoimigrante.api.dto.ImigranteResumoViewDTO;
+import br.com.projetoimigrante.api.dto.QtdImigrantesPorRegiaoViewDTO;
+import br.com.projetoimigrante.api.model.Familia;
 import br.com.projetoimigrante.api.model.Imigrante;
+import br.com.projetoimigrante.api.model.Pais;
+import br.com.projetoimigrante.api.repository.FamiliaRepository;
 import br.com.projetoimigrante.api.repository.ImigranteRepository;
+import br.com.projetoimigrante.api.repository.PaisRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,13 +20,32 @@ public class ImigranteService {
 	@Autowired
 	private ImigranteRepository imigranteRepository;
 
-	public void criarImigrante(Imigrante imigrante) {
+	@Autowired
+	private PaisRepository paisRepository;
+
+	@Autowired
+	private FamiliaRepository familiaRepository;
+
+	public void criarImigrante(ImigranteRequestDTO request) {
+		Pais pais = paisRepository.findById(request.idPais())
+				.orElseThrow(() -> new RuntimeException("País não encontrado"));
+
+		Familia familia = familiaRepository.findById(request.idFamilia())
+				.orElseThrow(() -> new RuntimeException("Família não encontrada"));
+
+		Imigrante imigrante = new Imigrante();
+		imigrante.setNome(request.nome());
+		imigrante.setSexo(request.sexo());
+		imigrante.setDataNascimento(request.dataNascimento());
+		imigrante.setNrDocumento(request.nrDocumento());
+		imigrante.setRefugiado(request.refugiado());
+		imigrante.setPais(pais);
+		imigrante.setFamilia(familia);
+
 		imigranteRepository.save(imigrante);
 	}
-
 	public Imigrante buscarPorDocumento(String documento) {
-		return imigranteRepository.findByNrPassaporte(documento)
-				.or(() -> imigranteRepository.findByRnm(documento))
+		return imigranteRepository.findByNrDocumento(documento)
 				.orElseThrow(() ->
 						new RuntimeException("Nenhum imigrante encontrado para o documento informado."));
 	}
@@ -29,68 +54,33 @@ public class ImigranteService {
 
 	public void deletarPorDocumento (String documento) {
 		Imigrante imigrante = imigranteRepository
-				.findByNrPassaporte(documento)
-				.or(() -> imigranteRepository.findByRnm(documento))
+				.findByNrDocumento(documento)
 				.orElseThrow(() ->
 						new RuntimeException("Nenhum imigrante encontrado para o documento informado."));
 
 		imigranteRepository.delete(imigrante);
 	}
 
-	public Imigrante atualizarPorDocumento(String documento, Imigrante imigranteAtt) {
+	public Imigrante atualizarPorDocumento(String documento, ImigranteRequestDTO request) {
 		Imigrante imigrante = imigranteRepository
-				.findByNrPassaporte(documento)
-				.or(() -> imigranteRepository.findByRnm(documento))
+				.findByNrDocumento(documento)
 				.orElseThrow(() ->
 						new RuntimeException("Imigrante não encontrado."));
 
-		imigrante.setNome(imigranteAtt.getNome());
-		imigrante.setSexo(imigranteAtt.getSexo());
-		imigrante.setDataNascimento(imigranteAtt.getDataNascimento());
-		imigrante.setPais(imigranteAtt.getPais());
-		imigrante.setFamilia(imigranteAtt.getFamilia());
+		Familia familia = familiaRepository.findById(request.idFamilia())
+				.orElseThrow(() -> new RuntimeException("Família não encontrada."));
+
+		Pais pais = paisRepository.findById(request.idPais())
+				.orElseThrow(() -> new RuntimeException("País não encontrado."));
+
+		imigrante.setNome(request.nome());
+		imigrante.setSexo(request.sexo());
+		imigrante.setDataNascimento(request.dataNascimento());
+		imigrante.setPais(pais);
+		imigrante.setFamilia(familia);
 
 		return imigranteRepository.save(imigrante);
 	}
 
-	public void validarDocumentos(Imigrante imigrante) {
 
-		if (imigrante.getTipoMigrante() == TipoMigranteEnum.REFUGIADO) {
-
-			if (imigrante.getRnm() == null ||
-					imigrante.getRnm().isBlank()) {
-
-				throw new RuntimeException(
-						"Refugiado deve informar o RNM."
-				);
-			}
-
-			if (imigrante.getNrPassaporte() != null &&
-					!imigrante.getNrPassaporte().isBlank()) {
-
-				throw new RuntimeException(
-						"Refugiado não deve informar passaporte."
-				);
-			}
-		}
-
-		if (imigrante.getTipoMigrante() == TipoMigranteEnum.IMIGRANTE) {
-
-			if (imigrante.getNrPassaporte() == null ||
-					imigrante.getNrPassaporte().isBlank()) {
-
-				throw new RuntimeException(
-						"Imigrante deve informar o número do passaporte."
-				);
-			}
-
-			if (imigrante.getRnm() != null &&
-					!imigrante.getRnm().isBlank()) {
-
-				throw new RuntimeException(
-						"Imigrante não deve informar RNM."
-				);
-			}
-		}
-	}
 }

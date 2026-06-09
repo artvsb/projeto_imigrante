@@ -27,24 +27,27 @@ public class AlojamentoService {
 		return alojamentoRepository.findAll();
 	}
 
-	public Alojamento buscarPorId(Long id) {
+	public Alojamento buscarPorId(Integer id) {
 		return alojamentoRepository.findById(id)
 				.orElseThrow(() -> new RuntimeException("Alojamento não encontrado."));
 	}
 
-	public void deletarPorId(Long id) {
+	public void deletarPorId(Integer id) {
 		alojamentoRepository.deleteById(id);
 	}
 
-	public Alojamento atualizarPorId(Long id, Alojamento alojamentoAtt) {
+	public Alojamento atualizarPorId(Integer id, Alojamento alojamentoAtt) {
 		Alojamento alojamento = buscarPorId(id);
 
 		alojamento.setTamanhoM2(alojamentoAtt.getTamanhoM2());
 		alojamento.setCustoMensal(alojamentoAtt.getCustoMensal());
 		alojamento.setStatus(alojamentoAtt.getStatus());
 		alojamento.setProprietario(alojamentoAtt.getProprietario());
-		alojamento.setEndereco(alojamentoAtt.getEndereco());
 
 		return alojamentoRepository.save(alojamento);
+	}
+
+	public List<Alojamento> buscarPorProprietario(Integer proprietarioId) {
+		return alojamentoRepository.findByProprietarioId(proprietarioId);
 	}
 }

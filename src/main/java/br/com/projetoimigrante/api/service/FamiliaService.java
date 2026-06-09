@@ -1,5 +1,6 @@
 package br.com.projetoimigrante.api.service;
 
+import br.com.projetoimigrante.api.dto.FamiliaResponseDTO;
 import br.com.projetoimigrante.api.enums.StatusFamiliaEnum;
 import br.com.projetoimigrante.api.model.Familia;
 import br.com.projetoimigrante.api.model.Imigrante;
@@ -29,21 +30,32 @@ public class FamiliaService {
 		return familiaRepository.save(familia);
 	}
 
-	public List<Familia> buscarTodasFamilias() {
-		return familiaRepository.findAll();
+	public List<FamiliaResponseDTO> buscarTodasFamilias() {
+		return familiaRepository.findAll()
+				.stream()
+				.map(familia -> new FamiliaResponseDTO(
+						familia.getId(),
+						familia.getNomeReferencia(),
+						familia.getDataCadastro(),
+						familia.getStatus(),
+						familia.getMembros()
+								.stream()
+								.map(imigrante -> imigrante.getNome())
+								.toList()
+				))
+				.toList();
 	}
-
-	public Familia buscarPorId(Long id) {
+	public Familia buscarPorId(Integer id) {
 		return familiaRepository.findById(id)
 				.orElseThrow(
 						() -> new RuntimeException("Nenhuma família encontrada."));
 	}
 
-	public void deletarPorId(Long id) {
+	public void deletarPorId(Integer id) {
 		familiaRepository.deleteById(id);
 	}
 
-	public void atualizarPorId(Long id, Familia familiaAtt) {
+	public void atualizarPorId(Integer id, Familia familiaAtt) {
 		familiaAtt.setId(id);
 		familiaRepository.save(familiaAtt);
 	}

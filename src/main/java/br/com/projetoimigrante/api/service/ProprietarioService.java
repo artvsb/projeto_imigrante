@@ -20,17 +20,17 @@ public class ProprietarioService {
 
 	public List<Proprietario> buscarTodosProprietarios() { return proprietarioRepository.findAll(); }
 
-	public Proprietario buscarPorId(Long id) {
+	public Proprietario buscarPorId(Integer id) {
 		return proprietarioRepository.findById(id)
 				.orElseThrow(() ->
 						new RuntimeException("Nenhum proprietário encontrado para este ID"));
 	}
 
-	public void deletarPorId(Long id) {
+	public void deletarPorId(Integer id) {
 		proprietarioRepository.deleteById(id);
 	}
 
-	public void atualizarPorId(Long id, Proprietario proprietarioAtt) {
+	public void atualizarPorId(Integer id, Proprietario proprietarioAtt) {
 		proprietarioAtt.setId(id);
 		proprietarioRepository.save(proprietarioAtt);
 	}

@@ -19,12 +19,15 @@ public class Familia {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
+	private Integer id;
 
 	@OneToMany(mappedBy = "familia", cascade = CascadeType.ALL)
 	private List<Imigrante> membros = new ArrayList<>();
 
+	@Column(name = "nome_referencia")
 	private String nomeReferencia;
+
+	@Column(name = "data_cadastro")
 	private LocalDate dataCadastro;
 
 	@Enumerated(EnumType.STRING)

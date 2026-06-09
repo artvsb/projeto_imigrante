@@ -1,7 +1,7 @@
 package br.com.projetoimigrante.api.model;
 
 import br.com.projetoimigrante.api.enums.SexoEnum;
-import br.com.projetoimigrante.api.enums.TipoMigranteEnum;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -18,7 +18,7 @@ public class Imigrante {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
+	private Integer id;
 
 	private String nome;
 
@@ -29,15 +29,11 @@ public class Imigrante {
 	@Column(name = "data_nascimento", nullable = false)
 	private LocalDate dataNascimento;
 
-	@Column(name = "nr_passaporte", unique = true)
-	private String nrPassaporte;
+	@Column(name = "nr_documento", nullable = false, unique = true)
+	private String nrDocumento;
 
-	@Column(name = "rnm", unique = true)
-	private String rnm;
-
-	@Enumerated(EnumType.STRING)
-	@Column(name = "tipo_migrante", nullable = false)
-	private TipoMigranteEnum tipoMigrante;
+	@Column(nullable = false)
+	private Boolean refugiado;
 
 	@ManyToOne
 	@JoinColumn(name = "id_pais",
@@ -46,5 +42,6 @@ public class Imigrante {
 
 	@ManyToOne
 	@JoinColumn(name = "id_familia", nullable = false)
+	@JsonIgnoreProperties("membros")
 	private Familia familia;
 }

@@ -14,9 +14,12 @@ import lombok.NoArgsConstructor;
 public class Alojamento {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
+	private Integer id;
 
+	@Column(name = "tamanho_m2")
 	private Double tamanhoM2;
+
+	@Column(name = "custo_mensal")
 	private Double custoMensal;
 
 	@Enumerated(EnumType.STRING)
@@ -26,7 +29,4 @@ public class Alojamento {
 	@JoinColumn(name = "id_proprietario", nullable = false)
 	private Proprietario proprietario;
 
-	@OneToOne
-	@JoinColumn(name = "id_endereco", nullable = false)
-	private Endereco endereco;
 }

@@ -1,6 +1,8 @@
 package br.com.projetoimigrante.api.controller;
 
+import br.com.projetoimigrante.api.model.Alojamento;
 import br.com.projetoimigrante.api.model.Proprietario;
+import br.com.projetoimigrante.api.service.AlojamentoService;
 import br.com.projetoimigrante.api.service.ProprietarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -14,6 +16,9 @@ public class ProprietarioController {
 
 	@Autowired
 	private ProprietarioService proprietarioService;
+
+	@Autowired
+	private AlojamentoService alojamentoService;
 
 	@PostMapping
 	@ResponseStatus(HttpStatus.CREATED)
@@ -29,20 +34,25 @@ public class ProprietarioController {
 
 	@GetMapping("/{id}")
 	@ResponseStatus(HttpStatus.OK)
-	public Proprietario buscarProprietarioPorId(@PathVariable Long id) {
+	public Proprietario buscarProprietarioPorId(@PathVariable Integer id) {
 		return proprietarioService.buscarPorId(id);
 	}
 
 	@DeleteMapping("/{id}")
 	@ResponseStatus(HttpStatus.NO_CONTENT)
-	public void deletarPorId(@PathVariable Long id) {
+	public void deletarPorId(@PathVariable Integer id) {
 		proprietarioService.deletarPorId(id);
 	}
 
 	@PutMapping("/{id}")
 	@ResponseStatus(HttpStatus.NO_CONTENT)
-	public void atualizarPorId(@PathVariable Long id, @RequestBody Proprietario proprietarioAtt) {
+	public void atualizarPorId(@PathVariable Integer id, @RequestBody Proprietario proprietarioAtt) {
 		proprietarioService.atualizarPorId(id, proprietarioAtt);
+	}
+
+	@GetMapping("/{id}/alojamentos")
+	public List<Alojamento> buscarAlojamentosPorProprietario(@PathVariable Integer id) {
+		return alojamentoService.buscarPorProprietario(id);
 	}
 
 }

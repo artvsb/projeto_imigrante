@@ -14,7 +14,7 @@ public class Endereco {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
+	private Integer id;
 
 	@OneToOne
 	@JoinColumn(name = "id_alojamento", nullable = false, unique = true)
@@ -27,4 +27,6 @@ public class Endereco {
 	@JoinColumn(name = "estado",
 		referencedColumnName = "sigla", nullable = false)
 	private Estado estado;
+
+	private String cep;
 }

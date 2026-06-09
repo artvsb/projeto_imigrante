@@ -1,5 +1,8 @@
 package br.com.projetoimigrante.api.controller;
 
+import br.com.projetoimigrante.api.dto.ImigranteRequestDTO;
+import br.com.projetoimigrante.api.dto.ImigranteResumoViewDTO;
+import br.com.projetoimigrante.api.dto.QtdImigrantesPorRegiaoViewDTO;
 import br.com.projetoimigrante.api.model.Imigrante;
 import br.com.projetoimigrante.api.service.ImigranteService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,8 +22,8 @@ public class ImigranteController {
 
 	@PostMapping
 	@ResponseStatus(HttpStatus.CREATED)
-	public void criarImigrante(@RequestBody Imigrante imigrante) {
-		imigranteService.criarImigrante(imigrante);
+	public void criarImigrante(@RequestBody ImigranteRequestDTO request) {
+		imigranteService.criarImigrante(request);
 	}
 
 	@GetMapping("/{documento}")
@@ -40,12 +43,11 @@ public class ImigranteController {
 	}
 
 	@PutMapping("/{documento}")
+	@ResponseStatus(HttpStatus.NO_CONTENT)
 	public Imigrante atualizarPorDocumento(
 			@PathVariable String documento,
-			@RequestBody Imigrante imigranteAtt) {
-		return imigranteService.atualizarPorDocumento(documento, imigranteAtt);
+			@RequestBody ImigranteRequestDTO request) {
+		return imigranteService.atualizarPorDocumento(documento, request);
 	}
-
-
 
 }

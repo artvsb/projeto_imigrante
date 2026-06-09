@@ -1,5 +1,6 @@
 package br.com.projetoimigrante.api.controller;
 
+import br.com.projetoimigrante.api.dto.FamiliaResponseDTO;
 import br.com.projetoimigrante.api.model.Familia;
 import br.com.projetoimigrante.api.service.FamiliaService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,25 +24,25 @@ public class FamiliaController {
 
 	@GetMapping
 	@ResponseStatus(HttpStatus.OK)
-	public List<Familia> buscarTodasFamilias() {
+	public List<FamiliaResponseDTO> buscarTodasFamilias() {
 		return familiaService.buscarTodasFamilias();
 	}
 
 	@GetMapping("/{id}")
 	@ResponseStatus(HttpStatus.OK)
-	public Familia buscarFamiliaPorId(@PathVariable Long id) {
+	public Familia buscarFamiliaPorId(@PathVariable Integer id) {
 		return familiaService.buscarPorId(id);
 	}
 
 	@DeleteMapping("/{id}")
 	@ResponseStatus(HttpStatus.NO_CONTENT)
-	public void deletarFamiliaPorId(@PathVariable Long id) {
+	public void deletarFamiliaPorId(@PathVariable Integer id) {
 		familiaService.deletarPorId(id);
 	}
 
 	@PutMapping("/{id}")
 	@ResponseStatus(HttpStatus.NO_CONTENT)
-	public void atualizarFamiliaPorId(@PathVariable Long id, @RequestBody Familia familiaAtt) {
+	public void atualizarFamiliaPorId(@PathVariable Integer id, @RequestBody Familia familiaAtt) {
 		familiaService.atualizarPorId(id, familiaAtt);
 	}
 
