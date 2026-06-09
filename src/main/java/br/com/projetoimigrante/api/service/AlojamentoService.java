@@ -1,9 +1,15 @@
 package br.com.projetoimigrante.api.service;
 
+import br.com.projetoimigrante.api.dto.CriarAlojamentoRequestDTO;
 import br.com.projetoimigrante.api.enums.StatusAlojamentoEnum;
 import br.com.projetoimigrante.api.model.Alojamento;
+import br.com.projetoimigrante.api.model.Endereco;
+import br.com.projetoimigrante.api.model.Proprietario;
 import br.com.projetoimigrante.api.repository.AlojamentoRepository;
+import br.com.projetoimigrante.api.repository.EnderecoRepository;
 import br.com.projetoimigrante.api.repository.FamiliaAlojamentoRepository;
+import br.com.projetoimigrante.api.repository.ProprietarioRepository;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,11 +22,36 @@ public class AlojamentoService {
 	private AlojamentoRepository alojamentoRepository;
 
 	@Autowired
+	private ProprietarioRepository proprietarioRepository;
+
+	@Autowired
+	private EnderecoRepository enderecoRepository;
+
+	@Autowired
 	private FamiliaAlojamentoRepository familiaAlojamentoRepository;
 
-	public Alojamento criarAlojamento(Alojamento alojamento) {
-		alojamento.setStatus(StatusAlojamentoEnum.DISPONIVEL);
-		return alojamentoRepository.save(alojamento);
+
+	@Transactional
+	public void criarAlojamento(CriarAlojamentoRequestDTO request) {
+		Proprietario proprietario = proprietarioRepository.findById(request.idProprietario())
+				.orElseThrow(() -> new RuntimeException("Proprietário não encontrado."));
+
+		Alojamento alojamento = new Alojamento();
+		alojamento.setTamanhoM2(request.tamanhoM2());
+		alojamento.setCustoMensal(request.custoMensal());
+		alojamento.setStatus(request.status());
+		alojamento.setProprietario(proprietario);
+
+		Alojamento alojamentoSalvo = alojamentoRepository.save(alojamento);
+
+		Endereco endereco = new Endereco();
+		endereco.setLogradouro(request.endereco().logradouro());
+		endereco.setCidade(request.endereco().cidade());
+		endereco.setEstado(request.endereco().estado());
+		endereco.setCep(request.endereco().cep());
+		endereco.setAlojamento(alojamentoSalvo);
+
+		enderecoRepository.save(endereco);
 	}
 
 	public List<Alojamento> buscarTodosAlojamentos() {

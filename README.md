@@ -3,7 +3,7 @@ Mat.: 2025111890023<br>
 Centro Universitário Uniesp
 Disciplina: Banco de Dados Avançado
 
-# Projeto Imigrante
+# ![globo](assets/mundo.png) Projeto Imigrante 
 
 API REST em Spring Boot para cadastro de imigrantes, famílias, proprietários, alojamentos, endereços, alocação de famílias e relatórios com views do PostgreSQL.
 

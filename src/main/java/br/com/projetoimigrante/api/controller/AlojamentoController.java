@@ -1,5 +1,6 @@
 package br.com.projetoimigrante.api.controller;
 
+import br.com.projetoimigrante.api.dto.CriarAlojamentoRequestDTO;
 import br.com.projetoimigrante.api.model.Alojamento;
 import br.com.projetoimigrante.api.model.Endereco;
 import br.com.projetoimigrante.api.service.AlojamentoService;
@@ -23,8 +24,8 @@ public class AlojamentoController {
 
 	@PostMapping
 	@ResponseStatus(HttpStatus.CREATED)
-	public void criarAlojamento(@RequestBody Alojamento alojamento) {
-		alojamentoService.criarAlojamento(alojamento);
+	public void criarAlojamento(@RequestBody CriarAlojamentoRequestDTO request) {
+		alojamentoService.criarAlojamento(request);
 	}
 
 	@GetMapping
