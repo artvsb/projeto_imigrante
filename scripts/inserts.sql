@@ -19,6 +19,7 @@ VALUES
 ('Oceania');
 
 
+
 INSERT INTO pais (id, nome, id_regiao) VALUES
     ('AF', 'Afeganistão', 7),
     ('AL', 'Albânia', 6),
@@ -373,3 +374,5 @@ VALUES
     (3, 8),   
     (4, 2),  
     (5, 11);  
+
+

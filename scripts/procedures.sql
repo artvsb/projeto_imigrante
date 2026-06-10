@@ -81,5 +81,3 @@ BEGIN
         v_id_alojamento;
 END;
 $$;
-
-SELECT * FROM familia;

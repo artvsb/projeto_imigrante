@@ -19,7 +19,7 @@ EXECUTE FUNCTION att_status_alojamento_entrada();
 
 
 
--- atualiza data de entrada da família em um alojamento
+-- atualiza data/hora de entrada da família em um alojamento
 
 CREATE OR REPLACE FUNCTION entrada_familia_alojamento()
  RETURNS TRIGGER
@@ -60,22 +60,6 @@ AFTER UPDATE OF data_hora_saida ON familia_alojamento
 FOR EACH ROW
 EXECUTE FUNCTION liberar_alojamento_apos_saida();
 
--- log de cadastro de família
-
-CREATE OR REPLACE FUNCTION log_cadastro_familia()
-RETURNS TRIGGER 
-AS $$
-BEGIN 
-	NEW.data_cadastro := now();
-	RETURN NEW;
-END;
-$$ LANGUAGE plpgsql;
-
-CREATE OR REPLACE TRIGGER log_cadastro_familia
-BEFORE INSERT 
-ON familia
-FOR EACH ROW 
-EXECUTE FUNCTION log_cadastro_familia();
 
 -- validar documento do proprietário
 
@@ -119,6 +103,6 @@ CREATE TRIGGER trg_validar_documento_proprietario
 BEFORE INSERT OR UPDATE ON proprietario
 FOR EACH ROW
 EXECUTE FUNCTION validar_documento_proprietario();
-		
+
 
 	

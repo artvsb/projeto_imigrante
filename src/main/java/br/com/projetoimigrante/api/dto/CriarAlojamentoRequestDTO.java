@@ -5,8 +5,8 @@ import br.com.projetoimigrante.api.enums.StatusAlojamentoEnum;
 import java.math.BigDecimal;
 
 public record CriarAlojamentoRequestDTO(
-		Double tamanhoM2,
-		Double custoMensal,
+		BigDecimal tamanhoM2,
+		BigDecimal custoMensal,
 		StatusAlojamentoEnum status,
 		Integer idProprietario,
 		EnderecoDTO endereco

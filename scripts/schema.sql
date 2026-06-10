@@ -3,10 +3,9 @@ CREATE TABLE regiao (
 	nome VARCHAR(100) NOT NULL UNIQUE
 );
 
-DROP DATABASE projeto_imigrante;
 
 CREATE TABLE pais (
-    id CHAR(2) PRIMARY KEY,
+    id VARCHAR(2) PRIMARY KEY,
     nome VARCHAR(100) NOT NULL,
     id_regiao BIGINT NOT NULL REFERENCES regiao(id)
     );
@@ -26,7 +25,7 @@ CREATE TABLE imigrante (
     nr_documento VARCHAR(30) NOT NULL,
     sexo VARCHAR(20) NOT NULL,
     data_nascimento DATE NOT NULL,
-    id_pais CHAR(2) NOT NULL REFERENCES pais(id),
+    id_pais VARCHAR(2) NOT NULL REFERENCES pais(id),
     id_familia BIGINT NOT NULL REFERENCES familia(id),
     refugiado BOOLEAN NOT NULL,
     CONSTRAINT chk_sexo
@@ -41,7 +40,7 @@ CREATE TABLE imigrante (
 CREATE TABLE proprietario (
     id BIGSERIAL PRIMARY KEY,
     nome VARCHAR(150) NOT NULL,
-    tipo_proprietario CHAR(2) NOT NULL,
+    tipo_proprietario VARCHAR(2) NOT NULL,
     cpf VARCHAR(11) UNIQUE,
     cnpj VARCHAR(14) UNIQUE,
     telefone VARCHAR(20),
@@ -49,8 +48,6 @@ CREATE TABLE proprietario (
     CONSTRAINT chk_tipo_proprietario
         CHECK (tipo_proprietario IN ('PF', 'PJ'))
 );
-
-SELECT * FROM proprietario;
 
 
 CREATE TABLE alojamento (
@@ -76,7 +73,7 @@ CREATE TABLE familia_alojamento (
 );
 
 CREATE TABLE estado (
-	sigla CHAR(2) PRIMARY KEY,
+	sigla VARCHAR(2) PRIMARY KEY,
 	nome varchar(100) NOT NULL);
 
 
@@ -85,8 +82,9 @@ CREATE TABLE endereco (
 	id_alojamento BIGINT NOT NULL UNIQUE REFERENCES alojamento(id),
 	logradouro VARCHAR(200),
     cidade VARCHAR(100) NOT NULL,
-    estado CHAR(2) NOT NULL REFERENCES estado(sigla),
-    cep CHAR(8) NOT NULL
+    estado VARCHAR(2) NOT NULL REFERENCES estado(sigla),
+    cep VARCHAR(8) NOT NULL
 );
+
 
 

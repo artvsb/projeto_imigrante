@@ -6,6 +6,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.math.BigDecimal;
+
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
@@ -17,10 +19,10 @@ public class Alojamento {
 	private Integer id;
 
 	@Column(name = "tamanho_m2")
-	private Double tamanhoM2;
+	private BigDecimal tamanhoM2;
 
 	@Column(name = "custo_mensal")
-	private Double custoMensal;
+	private BigDecimal custoMensal;
 
 	@Enumerated(EnumType.STRING)
 	private StatusAlojamentoEnum status;

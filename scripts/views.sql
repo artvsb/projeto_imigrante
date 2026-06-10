@@ -10,6 +10,8 @@ JOIN pais p ON p.id = i.id_pais;
 
 SELECT * FROM vw_imigrantes_resumo;
 
+
+
 -- visualizar alojamentos disponíveis, endereço e contato proprietário
 
 CREATE OR REPLACE VIEW vw_alojamentos_disponiveis AS
