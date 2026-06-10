@@ -18,23 +18,6 @@ VALUES
 ('Sudeste Asiático'),
 ('Oceania');
 
-UPDATE imigrante
-SET
-    refugiado = CASE
-        WHEN tipo_migrante = 'REFUGIADO' THEN TRUE
-        ELSE FALSE
-    END,
-    nr_documento = COALESCE(rnm, nr_passaporte);
-
-SELECT * FROM pais;
-SELECT * FROM regiao;
-SELECT * FROM familia;
-SELECT * FROM imigrante;
-SELECT * FROM proprietario;
-SELECT * FROM alojamento;
-SELECT * FROM endereco;
-SELECT * FROM estado;
-SELECT * FROM familia_alojamento;
 
 INSERT INTO pais (id, nome, id_regiao) VALUES
     ('AF', 'Afeganistão', 7),
@@ -243,7 +226,7 @@ VALUES
 	('Roberto Lima Ferreira', 'PF', '32165498710', '(11) 97444-1200', 'roberto.ferreira@gmail.com'),
     ('Ana Beatriz Moreira', 'PF', '27894561203', '(21) 98812-3301', 'ana.moreira@hotmail.com'),
     ('Paulo Henrique Nascimento', 'PF', '69012345788', '(31) 99745-8800', 'paulo.nascimento@gmail.com'),
-    ('Mariana Costa Ribeiro', 'PF', '50477896321', '(41) 98422-1199', 'mariana.ribeiro@yahoo.com.br'),
+    ('Rosimeire Paulo Martins', 'PF', '50477896321', '(41) 98422-1199', 'rosi.meire1977@yahoo.com.br'),
     ('Eduardo Martins Teixeira', 'PF', '91324658070', '(85) 99110-4455', 'eduardo.teixeira@gmail.com'),
     ('Fernanda Lopes Araújo', 'PF', '14725836901', '(61) 99678-2210', 'fernanda.araujo@hotmail.com'),
     ('Carlos Alberto Menezes', 'PF', '83045912766', '(71) 98777-4321', 'carlos.menezes@gmail.com'),
@@ -317,8 +300,8 @@ INSERT INTO endereco (id_alojamento, logradouro, cidade, estado, cep)
 VALUES
     (1, 'Rua Vergueiro, 1450', 'São Paulo', 'SP', '01504001'),
     (2, 'Rua das Laranjeiras, 310', 'Rio de Janeiro', 'RJ', '22240003'),
-    (3, 'Rua Padre Eustáquio, 820', 'Belo Horizonte', 'MG', '30720000'),
-    (4, 'Rua Visconde de Nácar, 455', 'Curitiba', 'PR', '80410000'),
+    (3, 'Rua Padre Anchieta, 820', 'Belo Horizonte', 'MG', '30720000'),
+    (4, 'Rua Visconde de Sabogosa, 455', 'Curitiba', 'PR', '80410000'),
     (5, 'Rua Senador Pompeu, 1120', 'Fortaleza', 'CE', '60025000'),
     (6, 'Avenida Santos Dumont, 900', 'Boa Vista', 'RR', '69301040'),
     (7, 'Rua Sete de Setembro, 640', 'Porto Alegre', 'RS', '90010010'),
@@ -352,36 +335,41 @@ VALUES
 
 INSERT INTO imigrante (
     nome,
-    sexo,
+    sexo,    
     data_nascimento,
-    nr_passaporte,
-    rnm,
-    tipo_migrante,
+    nr_documento,
     id_pais,
-    id_familia
+    id_familia,
+    refugiado
 )
 VALUES
-    ('Mohammed Ahmed', 'MASCULINO', '1982-04-12', NULL, 'RNM1000001', 'REFUGIADO', 'SY', 1),
-    ('Amina Ahmed', 'FEMININO', '1986-09-25', NULL, 'RNM1000002', 'REFUGIADO', 'SY', 1),
-    ('Youssef Ahmed', 'MASCULINO', '2012-02-18', NULL, 'RNM1000003', 'REFUGIADO', 'SY', 1),
-    ('Carlos Rodríguez', 'MASCULINO', '1978-07-03', 'VE1234567', NULL, 'IMIGRANTE', 'VE', 2),
-    ('María Rodríguez', 'FEMININO', '1981-11-16', 'VE7654321', NULL, 'IMIGRANTE', 'VE', 2),
-    ('Lucía Rodríguez', 'FEMININO', '2008-05-21', 'VE8899001', NULL, 'IMIGRANTE', 'VE', 2),
-    ('Jean Pierre Jean-Baptiste', 'MASCULINO', '1990-01-30', NULL, 'RNM1000004', 'REFUGIADO', 'HT', 3),
-    ('Nadine Jean-Baptiste', 'FEMININO', '1993-06-14', NULL, 'RNM1000005', 'REFUGIADO', 'HT', 3),
-    ('Ahmad Rahimi', 'MASCULINO', '1975-12-09', NULL, 'RNM1000006', 'REFUGIADO', 'AF', 4),
-    ('Farida Rahimi', 'FEMININO', '1980-03-27', NULL, 'RNM1000007', 'REFUGIADO', 'AF', 4),
-    ('Zahra Rahimi', 'FEMININO', '2010-10-02', NULL, 'RNM1000008', 'REFUGIADO', 'AF', 4),
-    ('Síngrid Oláfsson', 'MASCULINO', '1988-08-19', 'IS5566778', NULL, 'IMIGRANTE', 'IS', 5),
-    ('Javier Mendoza', 'MASCULINO', '1984-02-11', 'CO4455667', NULL, 'IMIGRANTE', 'CO', 6),
-    ('Camila Mendoza', 'FEMININO', '1987-09-08', 'CO7766554', NULL, 'IMIGRANTE', 'CO', 6),
-    ('Sofía Mendoza', 'FEMININO', '2015-01-22', 'CO1122334', NULL, 'IMIGRANTE', 'CO', 6),
-    ('Li Wei', 'MASCULINO', '1992-07-17', 'CN9988776', NULL, 'IMIGRANTE', 'CN', 7),
-    ('Mei Lin', 'FEMININO', '1994-12-01', 'CN6677889', NULL, 'IMIGRANTE', 'CN', 7),
-    ('Andrés Ferreira Silva', 'MASCULINO', '1985-05-13', 'UY1239988', NULL, 'IMIGRANTE', 'UY', 8),
-    ('Valentina Ferreira Silva', 'FEMININO', '1989-10-29', 'UY7788123', NULL, 'IMIGRANTE', 'UY', 8);
+    ('Mohammed Ahmed', 'MASCULINO', '1982-04-12', 'RNM1000001', 'SY', 1, TRUE),
+    ('Amina Ahmed', 'FEMININO', '1986-09-25', 'RNM1000002', 'SY', 1, TRUE),
+    ('Youssef Ahmed', 'MASCULINO', '2012-02-18', 'RNM1000003', 'SY', 1, TRUE),
+    ('Carlos Rodríguez', 'MASCULINO', '1978-07-03', 'VE1234567','VE', 2, FALSE),
+    ('María Rodríguez', 'FEMININO', '1981-11-16', 'VE7654321', 'VE', 2, FALSE ),
+    ('Lucía Rodríguez', 'FEMININO', '2008-05-21', 'VE8899001', 'VE', 2, FALSE ),
+    ('Jean Pierre Jean-Baptiste', 'MASCULINO', '1990-01-30', 'RNM1000004', 'HT', 3, TRUE),
+    ('Nadine Jean-Baptiste', 'FEMININO', '1993-06-14','RNM1000005', 'HT', 3, TRUE),
+    ('Ahmad Rahimi', 'MASCULINO', '1975-12-09', 'RNM1000006', 'AF', 4, TRUE),
+    ('Farida Rahimi', 'FEMININO', '1980-03-27', 'RNM1000007', 'AF', 4, TRUE),
+    ('Zahra Rahimi', 'FEMININO', '2010-10-02', 'RNM1000008', 'AF', 4, TRUE),
+    ('Síngrid Oláfsson', 'MASCULINO', '1988-08-19', 'IS5566778', 'IS', 5, FALSE),
+    ('Javier Mendoza', 'MASCULINO', '1984-02-11', 'CO4455667', 'CO', 6, FALSE),
+    ('Camila Mendoza', 'FEMININO', '1987-09-08', 'CO7766554', 'CO', 6, FALSE),
+    ('Sofía Mendoza', 'FEMININO', '2015-01-22', 'CO1122334', 'CO', 6, FALSE),
+    ('Li Wei', 'MASCULINO', '1992-07-17', 'CN9988776', 'CN', 7, FALSE),
+    ('Mei Lin', 'FEMININO', '1994-12-01', 'CN6677889', 'CN', 7, FALSE),
+    ('Andrés Ferreira Silva', 'MASCULINO', '1985-05-13', 'UY1239988', 'UY', 8, FALSE),
+    ('Valentina Ferreira Silva', 'FEMININO', '1989-10-29', 'UY7788123', 'UY', 8, FALSE);
 
 	
-
-
-
+INSERT INTO familia_alojamento (
+    id_familia,
+    id_alojamento
+)
+VALUES
+    (1, 1),   
+    (3, 8),   
+    (4, 2),  
+    (5, 11);  

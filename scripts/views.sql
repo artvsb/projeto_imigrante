@@ -10,6 +10,32 @@ JOIN pais p ON p.id = i.id_pais;
 
 SELECT * FROM vw_imigrantes_resumo;
 
+-- visualizar alojamentos disponíveis, endereço e contato proprietário
+
+CREATE OR REPLACE VIEW vw_alojamentos_disponiveis AS
+SELECT
+    a.id AS id_alojamento,
+    a.tamanho_m2,
+    a.custo_mensal,
+    a.status,
+    e.logradouro,
+    e.cidade,
+    e.estado,
+    e.cep,
+    p.id AS id_proprietario,
+    p.nome AS nome_proprietario,
+    p.telefone AS telefone_proprietario,
+    p.email AS email_proprietario
+FROM alojamento a
+JOIN proprietario p
+    ON p.id = a.id_proprietario
+LEFT JOIN endereco e
+    ON e.id_alojamento = a.id
+WHERE a.status = 'DISPONIVEL'
+ORDER BY a.custo_mensal;
+
+SELECT * FROM vw_alojamentos_disponiveis;
+
 
 
 -- visualizar o país de origem dos imigrantes, por estado da federação
@@ -31,37 +57,54 @@ ORDER BY 3 DESC;
 
 SELECT * FROM vw_origem_por_estado;
 
--- mostrar quantos m2 tem por pessoa em cada alojamento
 
-CREATE OR REPLACE VIEW vw_m2_por_pessoa_alojamento AS
-SELECT
-    a.id AS id_alojamento,
-    e.cidade,
-    e.estado,
-    a.tamanho_m2,
-    f.id AS id_familia,
-    f.nome_referencia,
-    COUNT(i.id) AS quantidade_pessoas,
-    a.tamanho_m2 / COUNT(i.id) AS m2_por_pessoa
-FROM alojamento a
-JOIN familia_alojamento fa
-    ON fa.id_alojamento = a.id
-   AND fa.data_hora_saida IS NULL
-JOIN familia f
-    ON f.id = fa.id_familia
+CREATE OR REPLACE VIEW vw_custo_por_imigrante_por_pais AS 
+WITH total_pessoas_por_alojamento AS (
+	SELECT 
+		a.id AS id_alojamento,
+		count(i.id) AS total_pessoas
+	FROM alojamento a
+	JOIN familia_alojamento fa
+	ON fa.id_alojamento = a.id AND fa.data_hora_saida IS NULL 
+	JOIN familia f
+	ON f.id = fa.id_familia
+	JOIN imigrante i
+	ON i.id_familia = f.id
+	GROUP BY a.id
+)
+SELECT 
+	p.id AS id_pais,
+	p.nome AS nome_pais,
+	count(i.id) AS qtd_imigrantes,
+	round(avg(a.custo_mensal / tpa.total_pessoas)::NUMERIC, 2) AS custo_medio_pessoa
+FROM pais p
+JOIN imigrante i ON p.id = i.id_pais
+JOIN familia f ON f.id = i.id_familia
+JOIN familia_alojamento fa ON fa.id_familia = f.id 
+AND fa.data_hora_saida IS NULL 
+JOIN alojamento a ON fa.id_alojamento = a.id
+JOIN total_pessoas_por_alojamento tpa ON tpa.id_alojamento = a.id
+GROUP BY 1, 2
+ORDER BY 4 DESC;
+
+SELECT * FROM vw_custo_por_imigrante_por_pais;
+
+-- quantidde de refugiados por pais:
+
+CREATE OR REPLACE VIEW vw_refugiados_por_pais AS 
+SELECT 
+	p.id AS id_pais,
+	p.nome AS pais_origem,
+	COUNT(i.id) AS total_refugiados
+FROM pais p
 JOIN imigrante i
-    ON i.id_familia = f.id
-LEFT JOIN endereco e
-    ON e.id_alojamento = a.id
-GROUP BY
-    a.id,
-    e.cidade,
-    e.estado,
-    a.tamanho_m2,
-    f.id,
-    f.nome_referencia;
+	ON i.id_pais = p.id
+WHERE i.refugiado = TRUE
+GROUP BY 1, 2
+ORDER BY 3 DESC;
 
-SELECT * FROM vw_m2_por_pessoa_alojamento;
+SELECT * FROM vw_refugiados_por_pais;
+
 
 -- nr de imigrantes e refugiados por estado
 
@@ -86,7 +129,7 @@ GROUP BY e.estado;
 SELECT * FROM vw_imigrantes_refugiados_por_estado;
 
 
--- imigrantes por regiao
+-- imigrantes por regiao:
 
 CREATE OR REPLACE VIEW vw_imigrantes_por_regiao AS
 SELECT
@@ -103,3 +146,4 @@ GROUP BY
     r.nome;
 
 SELECT * FROM vw_imigrantes_por_regiao;
+

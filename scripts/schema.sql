@@ -3,6 +3,8 @@ CREATE TABLE regiao (
 	nome VARCHAR(100) NOT NULL UNIQUE
 );
 
+DROP DATABASE projeto_imigrante;
+
 CREATE TABLE pais (
     id CHAR(2) PRIMARY KEY,
     nome VARCHAR(100) NOT NULL,
@@ -45,14 +47,11 @@ CREATE TABLE proprietario (
     telefone VARCHAR(20),
     email VARCHAR(150),
     CONSTRAINT chk_tipo_proprietario
-        CHECK (tipo_proprietario IN ('PF', 'PJ')),
-    CONSTRAINT chk_documento_proprietario
-        CHECK (
-            (tipo_proprietario = 'PF' AND cpf IS NOT NULL AND cnpj IS NULL)
-            OR
-            (tipo_proprietario = 'PJ' AND cnpj IS NOT NULL AND cpf IS NULL)
-        )
+        CHECK (tipo_proprietario IN ('PF', 'PJ'))
 );
+
+SELECT * FROM proprietario;
+
 
 CREATE TABLE alojamento (
     id BIGSERIAL PRIMARY KEY,
