@@ -345,17 +345,7 @@ VALUES
     ('Al-Hadid', 'ATIVA'),
     ('Kabua', 'ATIVA');
 
-INSERT INTO imigrante (
-    nome,
-    sexo,
-    data_nascimento,
-    nr_documento,
-    id_pais,
-    id_familia,
-    refugiado
-)
-VALUES
-    
+
 
 INSERT INTO imigrante (
     nome,
@@ -378,7 +368,7 @@ VALUES
     ('Ahmad Rahimi', 'MASCULINO', '1975-12-09', 'RNM1000006', 'AF',(SELECT id FROM familia WHERE nome_referencia = 'Rahimi'), TRUE),
     ('Farida Rahimi', 'FEMININO', '1980-03-27', 'RNM1000007', 'AF', (SELECT id FROM familia WHERE nome_referencia = 'Rahimi'), TRUE),
     ('Zahra Rahimi', 'FEMININO', '2010-10-02', 'RNM1000008', 'AF', (SELECT id FROM familia WHERE nome_referencia = 'Rahimi'), TRUE),
-    ('Síngrid Oláfsson', 'MASCULINO', '1988-08-19', 'IS5566778', 'IS',(SELECT id FROM familia WHERE nome_referencia = 'Ólafsson'), FALSE),
+    ('Síngrid Oláfsson', 'MASCULINO', '1988-08-19', 'IS5566778', 'IS',(SELECT id FROM familia WHERE nome_referencia = 'Oláfsson'), FALSE),
     ('Javier Mendoza', 'MASCULINO', '1984-02-11', 'CO4455667', 'CO', (SELECT id FROM familia WHERE nome_referencia = 'Mendoza'), FALSE),
     ('Camila Mendoza', 'FEMININO', '1987-09-08', 'CO7766554', 'CO', (SELECT id FROM familia WHERE nome_referencia = 'Mendoza'), FALSE),
     ('Sofía Mendoza', 'FEMININO', '2015-01-22', 'CO1122334', 'CO', (SELECT id FROM familia WHERE nome_referencia = 'Mendoza'), FALSE),
@@ -413,7 +403,6 @@ VALUES
     ('Salma Al-Hadid', 'FEMININO', '2016-01-13', 'RNM2000005', 'YE', (SELECT id FROM familia WHERE nome_referencia = 'Al-Hadid'), TRUE),
     ('Tariq Kabua', 'MASCULINO', '1991-03-03', 'MH3001001', 'MH', (SELECT id FROM familia WHERE nome_referencia = 'Kabua'), FALSE),
     ('Lina Kabua', 'FEMININO', '1994-09-29', 'MH3001002', 'MH', (SELECT id FROM familia WHERE nome_referencia = 'Kabua'), FALSE);
-;
 
 
 INSERT INTO familia_alojamento (
@@ -421,23 +410,22 @@ INSERT INTO familia_alojamento (
     id_alojamento
 )
 VALUES
-	((SELECT id FROM familia WHERE nome_referencia = 'Ahmed'), 1),
-	((SELECT id FROM familia WHERE nome_referencia = 'Jean-Baptiste'), 8),
-	((SELECT id FROM familia WHERE nome_referencia = 'Rahimi'), 2),
-	((SELECT id FROM familia WHERE nome_referencia = 'Ólafsson'), 11),
-    ((SELECT id FROM familia WHERE nome_referencia = 'Schleck'), 12),      -- Luxemburgo: 110m², R$ 3600
-    ((SELECT id FROM familia WHERE nome_referencia = 'Bühler'), 13),       -- Liechtenstein: 140m², R$ 2800
-    ((SELECT id FROM familia WHERE nome_referencia = 'Meier'), 17),        -- Suíça: 135m², R$ 2600
-    ((SELECT id FROM familia WHERE nome_referencia = 'Johansen'), 14),     -- Noruega: 160m², R$ 2400
-    ((SELECT id FROM familia WHERE nome_referencia = 'Tan'), 18),          -- Singapura: 155m², R$ 2100
-    ((SELECT id FROM familia WHERE nome_referencia = 'Nakamura'), 16),     -- Japão: 180m², R$ 1900
-    ((SELECT id FROM familia WHERE nome_referencia = 'Rakoto'), 6),        -- Madagascar: 95m², R$ 1300
-    ((SELECT id FROM familia WHERE nome_referencia = 'Chowdhury'), 5),     -- Bangladesh: 82m², R$ 1450
-    ((SELECT id FROM familia WHERE nome_referencia = 'Hassan'), 10),       -- Sudão: 88m², R$ 1500
-    ((SELECT id FROM familia WHERE nome_referencia = 'Al-Hadid'), 4),      -- Iêmen: 74m², R$ 1700
-    ((SELECT id FROM familia WHERE nome_referencia = 'Kabua'), 9),         -- Ilhas Marshall: 72m², R$ 1650
-    ((SELECT id FROM familia WHERE nome_referencia = 'Yilmaz'), 20);       -- Turquia: 76m², R$ 1750
-
+	(1, 1),
+	(3, 8),
+	(4, 2),
+	(5, 11),
+    (9, 12),      
+    (10, 13),       
+    (11, 17),       
+    (12, 14),    
+    (13, 18),         
+    (14, 16),     
+    (16, 6),        
+    (17, 5),     
+    (18, 10),       
+    (19, 4),      
+    (20, 9),        
+    (15, 20);       
 
 
 

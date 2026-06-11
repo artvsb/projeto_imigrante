@@ -40,6 +40,7 @@ public class RelatorioService {
 			new CampoPermitido("imigrante", "nr_documento", "i.nr_documento", "Numero do documento"),
 			new CampoPermitido("imigrante", "refugiado", "i.refugiado", "Refugiado"),
 			new CampoPermitido("pais", "nome", "p.nome", "País de origem"),
+            new CampoPermitido("regiao", "nome", "r.nome", "Região de origem"),
 			new CampoPermitido("familia", "nome_referencia", "f.nome_referencia", "Família"),
 			new CampoPermitido("familia", "data_cadastro", "f.data_cadastro", "Data de Cadastro"),
 			new CampoPermitido("familia", "status", "f.status", "Status da família"),
@@ -178,6 +179,7 @@ public class RelatorioService {
         SELECT %s
         FROM imigrante i
         LEFT JOIN pais p ON p.id = i.id_pais
+        LEFT JOIN regiao r on r.id = p.id_regiao
         LEFT JOIN familia f ON f.id = i.id_familia
         LEFT JOIN familia_alojamento fa ON fa.id_familia = f.id
         LEFT JOIN alojamento a ON a.id = fa.id_alojamento
