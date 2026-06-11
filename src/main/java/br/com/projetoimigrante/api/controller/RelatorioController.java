@@ -18,11 +18,13 @@ public class RelatorioController {
 	private RelatorioService relatorioService;
 
 	@GetMapping("/origem-por-estado")
+	@ResponseStatus(HttpStatus.OK)
 	public List<OrigemPorEstadoViewDTO> buscarOrigemPorEstado() {
 		return relatorioService.buscarOrigemPorEstado();
 	}
 
 	@GetMapping("/refugiados-por-pais")
+	@ResponseStatus(HttpStatus.OK)
 	public List<RefugiadosPorPaisViewDTO> buscarRefugiadosPorPais() {
 		return relatorioService.buscarRefugiadosPorPais();
 	}
@@ -72,6 +74,7 @@ public class RelatorioController {
 	}
 
 	@PostMapping(value = "/personalizadoImigrante/csv", produces = "text/csv")
+	@ResponseStatus(HttpStatus.CREATED)
 	public ResponseEntity<String> exportarRelatorioImigranteCsv(
 			@RequestBody RelatorioPersonalizadoRequestDTO request) {
 
@@ -83,6 +86,7 @@ public class RelatorioController {
 	}
 
 	@PostMapping(value = "/personalizadoProprietario/csv", produces = "text/csv")
+	@ResponseStatus(HttpStatus.CREATED)
 	public ResponseEntity<String> exportarRelatorioProprietarioCsv(
 			@RequestBody RelatorioPersonalizadoRequestDTO request) {
 
@@ -94,6 +98,7 @@ public class RelatorioController {
 	}
 
 	@GetMapping(value = "/origem-por-estado/csv", produces = "text/csv")
+	@ResponseStatus(HttpStatus.OK)
 	public ResponseEntity<String> exportarOrigemPorEstadoCsv() {
 		return ResponseEntity.ok()
 				.header("Content-Disposition", "attachment; filename=origem-por-estado.csv")
@@ -101,6 +106,7 @@ public class RelatorioController {
 	}
 
 	@GetMapping(value = "/custo-imigrante-pais/csv", produces = "text/csv")
+	@ResponseStatus(HttpStatus.OK)
 	public ResponseEntity<String> exportarCustoImigrantePaisCsv() {
 		return ResponseEntity.ok()
 				.header("Content-Disposition", "attachment; filename=origem-por-estado.csv")
@@ -108,6 +114,7 @@ public class RelatorioController {
 	}
 
 	@GetMapping(value = "/resumo/csv", produces = "text/csv")
+	@ResponseStatus(HttpStatus.OK)
 	public ResponseEntity<String> exportarResumoImigrantesCsv() {
 		return ResponseEntity.ok()
 				.header("Content-Disposition", "attachment; filename=resumo-imigrantes.csv")
@@ -115,6 +122,7 @@ public class RelatorioController {
 	}
 
 	@GetMapping("/alojamentos-disponiveis")
+	@ResponseStatus(HttpStatus.OK)
 	public List<AlojamentoDisponivelViewDTO> buscarAlojamentosDisponiveis() {
 		return relatorioService.buscarAlojamentosDisponiveis();
 	}
