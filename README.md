@@ -35,10 +35,10 @@ CREATE DATABASE projeto_imigrante;
 3. Após a execução dos scripts, inicie a execução do projeto Spring no IntelliJ IDEA (ou em outra IDE de sua preferência) e teste no Front End. Para testar esta API foi usado o *Insomnia*. As collections usadas estão salvas na pasta *insomnia/*
 
 
-## Collection do Insomnia
+## Insomnia
 
-As requisições para testar a API estão na pasta:
+As requisições do Insomnia usadas para testar a API estão no arquivo:
 
 ```txt
-insomnia/projeto-imigrante-collection.json
+Insomnia_requests.yaml
  
