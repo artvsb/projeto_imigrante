@@ -1,3 +1,35 @@
+-- data/hora do cadastro do imigrante
+
+CREATE OR REPLACE FUNCTION imig_data_hora_cadastro()
+RETURNS TRIGGER AS $$
+BEGIN
+    NEW.data_hora_cadastro = now();
+	NEW.data_hora_ultima_alteracao = now();
+    RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE TRIGGER trg_imig_novo_cadastro
+BEFORE INSERT ON imigrante
+FOR EACH ROW
+EXECUTE FUNCTION imig_data_hora_cadastro();
+
+-- data/hora da ultima alteracao cadastral: 
+
+CREATE OR REPLACE FUNCTION fn_imigrante_data_ultima_alteracao()
+RETURNS TRIGGER AS $$
+BEGIN
+    NEW.data_hora_ultima_alteracao = now();
+    RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE TRIGGER trg_imigrante_data_ultima_alteracao
+BEFORE UPDATE ON imigrante
+FOR EACH ROW
+EXECUTE FUNCTION fn_imigrante_data_ultima_alteracao();
+
+
 -- atualiza status do alojamento quando ocupado 
 
 CREATE OR REPLACE FUNCTION att_status_alojamento_entrada()

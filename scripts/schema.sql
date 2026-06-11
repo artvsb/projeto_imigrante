@@ -86,5 +86,3 @@ CREATE TABLE endereco (
     cep VARCHAR(8) NOT NULL
 );
 
-
-

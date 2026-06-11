@@ -8,6 +8,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -44,4 +45,10 @@ public class Imigrante {
 	@JoinColumn(name = "id_familia", nullable = false)
 	@JsonIgnoreProperties("membros")
 	private Familia familia;
+
+	@Column(name = "data_hora_cadastro", insertable = false, updatable = false)
+	private LocalDateTime dataHoraCadastro;
+
+	@Column(name = "data_hora_ultima_alteracao", insertable = false, updatable = false)
+	private LocalDateTime dataHoraUltimaAlteracao;
 }

@@ -1,0 +1,907 @@
+type: collection.insomnia.rest/5.0
+schema_version: "5.1"
+name: Projeto Imigrante
+meta:
+  id: wrk_c972deac8a144de6bee80a5432de8140
+  created: 1781183288375
+  modified: 1781183288375
+  description: ""
+collection:
+  - name: Imigrante
+    meta:
+      id: fld_abe9db2c6c484e40813a2d2b62388789
+      created: 1780873422544
+      modified: 1780933505002
+      sortKey: -1780873422544
+      description: ""
+    children:
+      - url: "{{ _.baseUrl }}/imigrantes"
+        name: criarImigrante
+        meta:
+          id: req_ea231fcee1ec40ffbc2f88b0f5a5f813
+          created: 1780873425800
+          modified: 1781118682692
+          isPrivate: false
+          description: ""
+          sortKey: -1780873425800
+        method: POST
+        body:
+          mimeType: application/json
+          text: |-
+            	{
+            	"nome": "Maria Yekaterina Karapova",
+            	"sexo": "FEMININO",
+            	"dataNascimento": "1977-08-17",
+            	"nrDocumento": "RU342129",
+            	"refugiado": false,
+            	"idPais": "RU",
+            	"idFamilia": 4 
+            	}
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/12.6.0
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{ _.baseUrl }}/imigrantes/RNMTESTE"
+        name: deletarPorId
+        meta:
+          id: req_2f84b3a4802a49938fbcd6fba2fb9c01
+          created: 1780938437360
+          modified: 1780938569741
+          isPrivate: false
+          description: ""
+          sortKey: -1780938437360
+        method: DELETE
+        headers:
+          - name: User-Agent
+            value: insomnia/12.6.0
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{ _.baseUrl }}/imigrantes"
+        name: buscarTodosImigrantes
+        meta:
+          id: req_3bab7800ad664402b5f1f565cbaa5914
+          created: 1780951411457
+          modified: 1780951445424
+          isPrivate: false
+          description: ""
+          sortKey: -1780951411457
+        method: GET
+        headers:
+          - name: User-Agent
+            value: insomnia/12.6.0
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{ _.baseUrl }}/imigrantes/qtd_por_regiao"
+        name: buscarResumoImigrantes
+        meta:
+          id: req_bd73548201c64e479d1ba47017deadfb
+          created: 1781015911852
+          modified: 1781018747085
+          isPrivate: false
+          description: ""
+          sortKey: -1781015911852
+        method: GET
+        headers:
+          - name: User-Agent
+            value: insomnia/12.6.0
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{ _.baseUrl }}/imigrantes/RNM109291"
+        name: atualizarPorDocumento
+        meta:
+          id: req_c7c421a4b8ad4a77a1f283d8fb52d210
+          created: 1781037235815
+          modified: 1781191901010
+          isPrivate: false
+          description: ""
+          sortKey: -1781037235815
+        method: PUT
+        body:
+          mimeType: application/json
+          text: |-
+            {
+            	"nome": "Mohammed Ahmed",
+            	"dataNascimento": "1987-01-07",
+            	"sexo": "MASCULINO",
+            	"nrDocumento": "RNM109291",
+            	"refugiado": true,
+            	"idFamilia": 1,
+            	"idPais": "AF"
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/12.6.0
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+  - name: Familia
+    meta:
+      id: fld_ce478996400c4994bd54f742c58982cf
+      created: 1780873644268
+      modified: 1780873659498
+      sortKey: -1780873644268
+      description: ""
+    children:
+      - url: "{{ _.baseUrl }}/familias"
+        name: criarFamilia
+        meta:
+          id: req_0c04405c5bb249c2b059b983ed2af673
+          created: 1780873647460
+          modified: 1781116645813
+          isPrivate: false
+          description: ""
+          sortKey: -1780873647460
+        method: POST
+        body:
+          mimeType: application/json
+          text: |-
+            {
+            	"nomeReferencia": "Karapova",
+            	"status": "ATIVA"
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/12.6.0
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{ _.baseUrl }}/familias"
+        name: buscarTodasFamilias
+        meta:
+          id: req_0a2b670aadfb471fa3f374112a1d8681
+          created: 1780873654339
+          modified: 1781059865090
+          isPrivate: false
+          description: ""
+          sortKey: -1780873654339
+        method: GET
+        headers:
+          - name: User-Agent
+            value: insomnia/12.6.0
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{ _.baseUrl }}/familias/2"
+        name: deletarPorId
+        meta:
+          id: req_a0989f2d58cc474daeef10ab20e3de67
+          created: 1780933908175
+          modified: 1780938386796
+          isPrivate: false
+          description: ""
+          sortKey: -1780933908175
+        method: DELETE
+        headers:
+          - name: User-Agent
+            value: insomnia/12.6.0
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{ _.baseUrl }}/familias/1"
+        name: atualizarPorId
+        meta:
+          id: req_a2ad6bf832904980ae3777b91809d2d0
+          created: 1781037063827
+          modified: 1781037173281
+          isPrivate: false
+          description: ""
+          sortKey: -1781037063827
+        method: PUT
+        body:
+          mimeType: application/json
+          text: |-
+            {
+            	"nomeReferencia": "Ahmed"
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/12.6.0
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+  - name: Proprietario
+    meta:
+      id: fld_ecf640c6385349d392d2a5df21cea676
+      created: 1780924757072
+      modified: 1781034966569
+      sortKey: -1780924757072
+      description: ""
+    children:
+      - url: "{{ _.baseUrl }}/proprietarios"
+        name: criarProprietario
+        meta:
+          id: req_361b190de91f46eaa6ac0cfe9bcecf53
+          created: 1780924760248
+          modified: 1781119680187
+          isPrivate: false
+          description: ""
+          sortKey: -1780924760248
+        method: POST
+        body:
+          mimeType: application/json
+          text: |-
+            {
+            	"nome": "Construtora Siriema",
+            	"tipoProprietario": "PJ",
+            	"cnpj": "124674230122",
+            	"telefone": "(83) 3224-9090",
+            	"email": "contato@gconstrutoraema.com"
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/12.6.0
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{ _.baseUrl }}/proprietarios"
+        name: buscarTodosProprietarios
+        meta:
+          id: req_cdeadf72b4944c90aa8b16b52b1befd0
+          created: 1781034968830
+          modified: 1781034987561
+          isPrivate: false
+          description: ""
+          sortKey: -1781034968830
+        method: GET
+        headers:
+          - name: User-Agent
+            value: insomnia/12.6.0
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+  - name: Alojamento
+    meta:
+      id: fld_64ce170b934445aeb729a23949d0ff93
+      created: 1780925178719
+      modified: 1781040277762
+      sortKey: -1780925178719
+      description: ""
+    children:
+      - url: "{{ _.baseUrl }}/alojamentos"
+        name: criarAlojamento
+        meta:
+          id: req_86cda0f37b5f43efa74d896bb12e13a3
+          created: 1780925181764
+          modified: 1781059027419
+          isPrivate: false
+          description: ""
+          sortKey: -1780925181764
+        method: POST
+        body:
+          mimeType: application/json
+          text: |-
+            {
+            	"tamanhoM2": "140",
+            	"custoMensal": "1400",
+            	"status": "DISPONIVEL",
+            	"idProprietario": 17,
+            	"endereco": {
+            		"logradouro": "Rua das Tulipas 2009",
+            		"cidade": "Picos",
+            		"estado": {"sigla": "PI"},
+            		"cep": "64600000"
+            	}
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/12.6.0
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{ _.baseUrl }}/alojamentos"
+        name: buscarTodosAlojamentos
+        meta:
+          id: req_5abcafbda8ca464c860362fe1fc80b61
+          created: 1781036575989
+          modified: 1781059326556
+          isPrivate: false
+          description: ""
+          sortKey: -1781036575989
+        method: GET
+        headers:
+          - name: User-Agent
+            value: insomnia/12.6.0
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+  - name: Endereco
+    meta:
+      id: fld_f8d716a5a2614f9fa092b4cadb7dafe8
+      created: 1780925333947
+      modified: 1780925333947
+      sortKey: -1780925333947
+      description: ""
+    children:
+      - url: "{{ _.baseUrl }}/alojamentos/1/endereco"
+        name: criarEndereco
+        meta:
+          id: req_a796d9c949b24ec18b921ab436484163
+          created: 1780925336835
+          modified: 1781036473557
+          isPrivate: false
+          description: ""
+          sortKey: -1780925336835
+        method: POST
+        body:
+          mimeType: application/json
+          text: |-
+            {
+            	"alojamento": {"id": 2},
+            	"logradouro": "Rua dos Lírios Cartagineses, 200",
+            	"cidade": "São Paulo",
+            	"estado": {"sigla": "SP"},
+            	"cep": "01110001"
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/12.6.0
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{ _.baseUrl }}/alojamentos/1/endereco"
+        name: buscarEndereco
+        meta:
+          id: req_398ca60194564513ab03ce926f256b04
+          created: 1781036934381
+          modified: 1781058336550
+          isPrivate: false
+          description: ""
+          sortKey: -1781036934381
+        method: GET
+        headers:
+          - name: User-Agent
+            value: insomnia/12.6.0
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+  - name: FamiliaAlojamento
+    meta:
+      id: fld_9571ce7ebacc4495a577111b0dbaa73c
+      created: 1780925695806
+      modified: 1780925695806
+      sortKey: -1780925695807
+      description: ""
+    children:
+      - url: "{{ _.baseUrl }}/familia_alojamento/alocar"
+        name: alocarFamilia
+        meta:
+          id: req_7d2b382e56c3434ebdefa7ac552b0ec7
+          created: 1780925699439
+          modified: 1781060034514
+          isPrivate: false
+          description: ""
+          sortKey: -1780925699439
+        method: POST
+        body:
+          mimeType: application/json
+          text: |-
+            {
+            	"idFamilia": 2,
+            	"idAlojamento": 6
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/12.6.0
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{ _.baseUrl }}/familia_alojamento/desalocar"
+        name: desalocarFamilia
+        meta:
+          id: req_90e03a7098264152a1429101a8339c29
+          created: 1780949325403
+          modified: 1780949708237
+          isPrivate: false
+          description: ""
+          sortKey: -1780949325403
+        method: POST
+        body:
+          mimeType: application/json
+          text: "1"
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/12.6.0
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{ _.baseUrl }}/familia_alojamento/alojamentos-ocupados"
+        name: buscarAlojamentosOcupados
+        meta:
+          id: req_41fe3d9f2c3246df90ea578ae2620dd7
+          created: 1781062750115
+          modified: 1781062792059
+          isPrivate: false
+          description: ""
+          sortKey: -1781062750115
+        method: GET
+        headers:
+          - name: User-Agent
+            value: insomnia/12.6.0
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+  - name: Relatorio
+    meta:
+      id: fld_7a8544b52b774572a0e404ab9876954c
+      created: 1780950739813
+      modified: 1780950739813
+      sortKey: -1780950739813
+      description: ""
+    children:
+      - url: "{{ _.baseUrl }}/relatorios/origem-por-estado"
+        name: origem-por-estado
+        meta:
+          id: req_115f745c27594c1fbf9089672adf2008
+          created: 1780950743327
+          modified: 1781060109766
+          isPrivate: false
+          description: ""
+          sortKey: -1780950743327
+        method: GET
+        headers:
+          - name: User-Agent
+            value: insomnia/12.6.0
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{ _.baseUrl }}/relatorios/refugiados-por-pais"
+        name: refugiados-por-pais
+        meta:
+          id: req_5943d1ca38394d038f184e125afe9917
+          created: 1781024386485
+          modified: 1781024423185
+          isPrivate: false
+          description: ""
+          sortKey: -1781024386485
+        method: GET
+        headers:
+          - name: User-Agent
+            value: insomnia/12.6.0
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{ _.baseUrl }}/relatorios/resumo"
+        name: resumo
+        meta:
+          id: req_6e889cc294e2459483dfa1607c2b1e18
+          created: 1781024984856
+          modified: 1781060105255
+          isPrivate: false
+          description: ""
+          sortKey: -1781024984856
+        method: GET
+        headers:
+          - name: User-Agent
+            value: insomnia/12.6.0
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{ _.baseUrl }}/relatorios/qtd-por-regiao"
+        name: qtd-por-regiao
+        meta:
+          id: req_c7a76a23bc2044fab2af7cc95e4d8a84
+          created: 1781026975392
+          modified: 1781034453114
+          isPrivate: false
+          description: ""
+          sortKey: -1781026975392
+        method: GET
+        headers:
+          - name: User-Agent
+            value: insomnia/12.6.0
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{ _.baseUrl }}/relatorios/custo-por-imigrante-por-pais"
+        name: custo-por-imigrante-por-pais
+        meta:
+          id: req_fd5e00de86324adf9a20cbf17bafceec
+          created: 1781034372941
+          modified: 1781121150600
+          isPrivate: false
+          description: ""
+          sortKey: -1781034372941
+        method: GET
+        headers:
+          - name: User-Agent
+            value: insomnia/12.6.0
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{ _.baseUrl }}/relatorios/personalizado/camposImigrante"
+        name: listarCamposRelatorioImigrante
+        meta:
+          id: req_03ff96caa8244c8e82c437d401ff9ffc
+          created: 1781191904621
+          modified: 1781195325948
+          isPrivate: false
+          description: ""
+          sortKey: -1781191904621
+        method: GET
+        headers:
+          - name: User-Agent
+            value: insomnia/12.6.0
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{ _.baseUrl }}/relatorios/personalizadoProprietario"
+        name: gerarRelatorioProprietario
+        meta:
+          id: req_1724c42390b8400482f1fd17757139d2
+          created: 1781192007106
+          modified: 1781196469448
+          isPrivate: false
+          description: ""
+          sortKey: -1781192007106
+        method: POST
+        body:
+          mimeType: application/json
+          text: |-
+            {
+              "campos": 
+            	[
+                { "tabela": "proprietario", "campo": "nome" },
+            		{ "tabela": "proprietario", "campo": "cpf" },
+            		{ "tabela": "proprietario", "campo": "cnpj" },
+                { "tabela": "alojamento", "campo": "id" },
+                { "tabela": "alojamento", "campo": "status" },
+                { "tabela": "alojamento", "campo": "tamanho_m2" }
+            		],
+              "limite": 500
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/12.6.0
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{ _.baseUrl }}/relatorios/personalizadoImigrante"
+        name: gerarRelatorioImigrante
+        meta:
+          id: req_9e2039631dd64b9db8db39e2cf1b17fe
+          created: 1781195344289
+          modified: 1781195729645
+          isPrivate: false
+          description: ""
+          sortKey: -1781191955863.5
+        method: POST
+        body:
+          mimeType: application/json
+          text: |-
+            {
+              "campos": [
+                { "tabela": "imigrante", "campo": "nome" },
+                { "tabela": "pais", "campo": "nome" },
+                { "tabela": "familia", "campo": "status" }
+              ],
+              "limite": 100
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/12.6.0
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{ _.baseUrl }}/relatorios/personalizado/camposProprietario"
+        name: listarCamposRelatorioProprietario
+        meta:
+          id: req_d0a505049b2d4aa092423a71ef0b5031
+          created: 1781195360474
+          modified: 1781195375099
+          isPrivate: false
+          description: ""
+          sortKey: -1781127327368
+        method: GET
+        headers:
+          - name: User-Agent
+            value: insomnia/12.6.0
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{ _.baseUrl }}/relatorios/personalizadoImigrante/csv"
+        name: relatorioImigranteCsv
+        meta:
+          id: req_f25b4fcf7bb74b5991b6babec5977215
+          created: 1781196807392
+          modified: 1781196887094
+          isPrivate: false
+          description: ""
+          sortKey: -1781196807392
+        method: POST
+        body:
+          mimeType: application/json
+          text: |-
+            {
+              "campos": [
+                { "tabela": "imigrante", "campo": "nome" },
+                { "tabela": "pais", "campo": "nome" },
+                { "tabela": "familia", "campo": "status" }
+              ],
+              "limite": 100
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/12.6.0
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{ _.baseUrl }}/relatorios/personalizadoProprietario/csv"
+        name: relatorioProprietarioCsv
+        meta:
+          id: req_7bb8b26e4c8c40beaf35293fb88b766a
+          created: 1781196954928
+          modified: 1781196978288
+          isPrivate: false
+          description: ""
+          sortKey: -1781194407249
+        method: POST
+        body:
+          mimeType: application/json
+          text: |-
+            {
+              "campos": 
+            	[
+                { "tabela": "proprietario", "campo": "nome" },
+            		{ "tabela": "proprietario", "campo": "cpf" },
+            		{ "tabela": "proprietario", "campo": "cnpj" },
+                { "tabela": "alojamento", "campo": "id" },
+                { "tabela": "alojamento", "campo": "status" },
+                { "tabela": "alojamento", "campo": "tamanho_m2" }
+            		],
+              "limite": 500
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/12.6.0
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+cookieJar:
+  name: Default Jar
+  meta:
+    id: jar_b33a520a786c493287160489140f7904
+    created: 1780873392146
+    modified: 1780873392146
+environments:
+  name: Base Environment
+  meta:
+    id: env_d038794b2207402aa94a4f9d197607de
+    created: 1780873392144
+    modified: 1780873567770
+    isPrivate: false
+  data:
+    baseUrl: http://localhost:8080

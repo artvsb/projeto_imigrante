@@ -244,28 +244,28 @@ VALUES
     ('Horizonte Imóveis e Alojamentos LTDA', 'PJ', '77888999000100', '(71) 3011-9090', 'contato@horizonteimoveis.com.br'),
     ('Casa Segura Serviços Imobiliários LTDA', 'PJ', '88999000000111', '(81) 3456-7000', 'admin@casasegura.com.br');
 
-INSERT INTO alojamento (id, tamanho_m2, custo_mensal, status, id_proprietario)
+INSERT INTO alojamento (tamanho_m2, custo_mensal, status, id_proprietario)
 VALUES
-    (1, 45.00, 2800.00, 'DISPONIVEL', (SELECT id FROM proprietario WHERE cpf = '12345678900')),
-    (2, 52.00, 2600.00, 'DISPONIVEL', (SELECT id FROM proprietario WHERE cpf = '45678000100')),
-    (3, 68.00, 1900.00, 'DISPONIVEL', (SELECT id FROM proprietario WHERE cpf = '99811222333')),
-    (4, 74.00, 1700.00, 'DISPONIVEL', (SELECT id FROM proprietario WHERE cpf = '44566789005')),
-    (5, 82.00, 1450.00, 'DISPONIVEL', (SELECT id FROM proprietario WHERE cpf = '88211999000')),
-    (6, 95.00, 1300.00, 'DISPONIVEL', (SELECT id FROM proprietario WHERE cpf = '11788999102')),
-    (7, 60.00, 2100.00, 'DISPONIVEL', (SELECT id FROM proprietario WHERE cpf = '77711222991')),
-    (8, 50.00, 2400.00, 'DISPONIVEL', (SELECT id FROM proprietario WHERE cpf = '32165498710')),
-    (9, 72.00, 1650.00, 'DISPONIVEL', (SELECT id FROM proprietario WHERE cpf = '27894561203')),
-    (10, 88.00, 1500.00, 'DISPONIVEL', (SELECT id FROM proprietario WHERE cpf = '69012345788')),
-    (11, 120.00, 4200.00, 'DISPONIVEL', (SELECT id FROM proprietario WHERE cnpj = '11222333000144')),
-    (12, 110.00, 3600.00, 'DISPONIVEL', (SELECT id FROM proprietario WHERE cnpj = '22333444000155')),
-    (13, 140.00, 2800.00, 'DISPONIVEL', (SELECT id FROM proprietario WHERE cnpj = '33444555000166')),
-    (14, 160.00, 2400.00, 'DISPONIVEL', (SELECT id FROM proprietario WHERE cnpj = '44555666000177')),
-    (15, 150.00, 2200.00, 'DISPONIVEL', (SELECT id FROM proprietario WHERE cnpj = '55666777000188')),
-    (16, 180.00, 1900.00, 'DISPONIVEL', (SELECT id FROM proprietario WHERE cnpj = '66777888000199')),
-    (17, 135.00, 2600.00, 'DISPONIVEL', (SELECT id FROM proprietario WHERE cnpj = '77888999000100')),
-    (18, 155.00, 2100.00, 'DISPONIVEL', (SELECT id FROM proprietario WHERE cnpj = '88999000000111')),
-    (19, 58.00, 2300.00, 'DISPONIVEL', (SELECT id FROM proprietario WHERE cpf = '14725836901')),
-    (20, 76.00, 1750.00, 'DISPONIVEL', (SELECT id FROM proprietario WHERE cpf = '83045912766'));
+    (45.00, 2800.00, 'DISPONIVEL', (SELECT id FROM proprietario WHERE cpf = '12345678900')),
+    (52.00, 2600.00, 'DISPONIVEL', (SELECT id FROM proprietario WHERE cpf = '45678000100')),
+    (68.00, 1900.00, 'DISPONIVEL', (SELECT id FROM proprietario WHERE cpf = '99811222333')),
+    (74.00, 1700.00, 'DISPONIVEL', (SELECT id FROM proprietario WHERE cpf = '44566789005')),
+    (82.00, 1450.00, 'DISPONIVEL', (SELECT id FROM proprietario WHERE cpf = '88211999000')),
+    (95.00, 1300.00, 'DISPONIVEL', (SELECT id FROM proprietario WHERE cpf = '11788999102')),
+    (60.00, 2100.00, 'DISPONIVEL', (SELECT id FROM proprietario WHERE cpf = '77711222991')),
+    (50.00, 2400.00, 'DISPONIVEL', (SELECT id FROM proprietario WHERE cpf = '32165498710')),
+    (72.00, 1650.00, 'DISPONIVEL', (SELECT id FROM proprietario WHERE cpf = '27894561203')),
+    (88.00, 1500.00, 'DISPONIVEL', (SELECT id FROM proprietario WHERE cpf = '69012345788')),
+    (120.00, 4200.00, 'DISPONIVEL', (SELECT id FROM proprietario WHERE cnpj = '11222333000144')),
+    (110.00, 3600.00, 'DISPONIVEL', (SELECT id FROM proprietario WHERE cnpj = '22333444000155')),
+    (140.00, 2800.00, 'DISPONIVEL', (SELECT id FROM proprietario WHERE cnpj = '33444555000166')),
+    (160.00, 2400.00, 'DISPONIVEL', (SELECT id FROM proprietario WHERE cnpj = '44555666000177')),
+    (150.00, 2200.00, 'DISPONIVEL', (SELECT id FROM proprietario WHERE cnpj = '55666777000188')),
+    (180.00, 1900.00, 'DISPONIVEL', (SELECT id FROM proprietario WHERE cnpj = '66777888000199')),
+    (135.00, 2600.00, 'DISPONIVEL', (SELECT id FROM proprietario WHERE cnpj = '77888999000100')),
+    (155.00, 2100.00, 'DISPONIVEL', (SELECT id FROM proprietario WHERE cnpj = '88999000000111')),
+    (58.00, 2300.00, 'DISPONIVEL', (SELECT id FROM proprietario WHERE cpf = '14725836901')),
+    (76.00, 1750.00, 'DISPONIVEL', (SELECT id FROM proprietario WHERE cpf = '83045912766'));
 
 INSERT INTO estado VALUES 
 ('AC', 'Acre'),
@@ -322,17 +322,40 @@ VALUES
 
 
 
-INSERT INTO familia (id, nome_referencia, status)
+INSERT INTO familia (nome_referencia, status)
 VALUES
-    (1, 'Ahmed',  'ATIVA'),
-    (2, 'Rodríguez', 'ATIVA'),
-    (3, 'Jean-Baptiste', 'ATIVA'),
-    (4, 'Rahimi', 'ATIVA'),
-    (5, 'Oláfsson', 'ATIVA'),
-    (6, 'Mendoza', 'ATIVA'),
-    (7, 'Wei', 'ATIVA'),
-    (8, 'Ferreira Silva', 'ATIVA');
+    ('Ahmed',  'ATIVA'),
+    ('Rodríguez', 'ATIVA'),
+    ('Jean-Baptiste', 'ATIVA'),
+    ('Rahimi', 'ATIVA'),
+    ('Oláfsson', 'ATIVA'),
+    ('Mendoza', 'ATIVA'),
+    ('Wei', 'ATIVA'),
+    ('Ferreira Silva', 'ATIVA'),
+    ('Schleck', 'ATIVA'),
+    ('Bühler', 'ATIVA'),
+    ('Meier', 'ATIVA'),
+    ('Johansen', 'ATIVA'),
+    ('Tan', 'ATIVA'),
+    ('Nakamura', 'ATIVA'),
+    ('Yilmaz', 'ATIVA'),
+    ('Rakoto', 'ATIVA'),
+    ('Chowdhury', 'ATIVA'),
+    ('Hassan', 'ATIVA'),
+    ('Al-Hadid', 'ATIVA'),
+    ('Kabua', 'ATIVA');
 
+INSERT INTO imigrante (
+    nome,
+    sexo,
+    data_nascimento,
+    nr_documento,
+    id_pais,
+    id_familia,
+    refugiado
+)
+VALUES
+    
 
 INSERT INTO imigrante (
     nome,
@@ -344,35 +367,77 @@ INSERT INTO imigrante (
     refugiado
 )
 VALUES
-    ('Mohammed Ahmed', 'MASCULINO', '1982-04-12', 'RNM1000001', 'SY', 1, TRUE),
-    ('Amina Ahmed', 'FEMININO', '1986-09-25', 'RNM1000002', 'SY', 1, TRUE),
-    ('Youssef Ahmed', 'MASCULINO', '2012-02-18', 'RNM1000003', 'SY', 1, TRUE),
-    ('Carlos Rodríguez', 'MASCULINO', '1978-07-03', 'VE1234567','VE', 2, FALSE),
-    ('María Rodríguez', 'FEMININO', '1981-11-16', 'VE7654321', 'VE', 2, FALSE ),
-    ('Lucía Rodríguez', 'FEMININO', '2008-05-21', 'VE8899001', 'VE', 2, FALSE ),
-    ('Jean Pierre Jean-Baptiste', 'MASCULINO', '1990-01-30', 'RNM1000004', 'HT', 3, TRUE),
-    ('Nadine Jean-Baptiste', 'FEMININO', '1993-06-14','RNM1000005', 'HT', 3, TRUE),
-    ('Ahmad Rahimi', 'MASCULINO', '1975-12-09', 'RNM1000006', 'AF', 4, TRUE),
-    ('Farida Rahimi', 'FEMININO', '1980-03-27', 'RNM1000007', 'AF', 4, TRUE),
-    ('Zahra Rahimi', 'FEMININO', '2010-10-02', 'RNM1000008', 'AF', 4, TRUE),
-    ('Síngrid Oláfsson', 'MASCULINO', '1988-08-19', 'IS5566778', 'IS', 5, FALSE),
-    ('Javier Mendoza', 'MASCULINO', '1984-02-11', 'CO4455667', 'CO', 6, FALSE),
-    ('Camila Mendoza', 'FEMININO', '1987-09-08', 'CO7766554', 'CO', 6, FALSE),
-    ('Sofía Mendoza', 'FEMININO', '2015-01-22', 'CO1122334', 'CO', 6, FALSE),
-    ('Li Wei', 'MASCULINO', '1992-07-17', 'CN9988776', 'CN', 7, FALSE),
-    ('Mei Lin', 'FEMININO', '1994-12-01', 'CN6677889', 'CN', 7, FALSE),
-    ('Andrés Ferreira Silva', 'MASCULINO', '1985-05-13', 'UY1239988', 'UY', 8, FALSE),
-    ('Valentina Ferreira Silva', 'FEMININO', '1989-10-29', 'UY7788123', 'UY', 8, FALSE);
+    ('Mohammed Ahmed', 'MASCULINO', '1982-04-12', 'RNM1000001', 'SY', (SELECT id FROM familia WHERE nome_referencia = 'Ahmed'), TRUE),
+    ('Amina Ahmed', 'FEMININO', '1986-09-25', 'RNM1000002', 'SY', (SELECT id FROM familia WHERE nome_referencia = 'Ahmed'), TRUE),
+    ('Youssef Ahmed', 'MASCULINO', '2012-02-18', 'RNM1000003', 'SY', (SELECT id FROM familia WHERE nome_referencia = 'Ahmed'), TRUE),
+    ('Carlos Rodríguez', 'MASCULINO', '1978-07-03', 'VE1234567','VE', (SELECT id FROM familia WHERE nome_referencia = 'Rodríguez'), FALSE),
+    ('María Rodríguez', 'FEMININO', '1981-11-16', 'VE7654321', 'VE',(SELECT id FROM familia WHERE nome_referencia = 'Rodríguez'), FALSE ),
+    ('Lucía Rodríguez', 'FEMININO', '2008-05-21', 'VE8899001', 'VE', (SELECT id FROM familia WHERE nome_referencia = 'Rodríguez'), FALSE ),
+    ('Jean Pierre Jean-Baptiste', 'MASCULINO', '1990-01-30', 'RNM1000004', 'HT',(SELECT id FROM familia WHERE nome_referencia = 'Jean-Baptiste'), TRUE),
+    ('Nadine Jean-Baptiste', 'FEMININO', '1993-06-14','RNM1000005', 'HT', (SELECT id FROM familia WHERE nome_referencia = 'Jean-Baptiste'), TRUE),
+    ('Ahmad Rahimi', 'MASCULINO', '1975-12-09', 'RNM1000006', 'AF',(SELECT id FROM familia WHERE nome_referencia = 'Rahimi'), TRUE),
+    ('Farida Rahimi', 'FEMININO', '1980-03-27', 'RNM1000007', 'AF', (SELECT id FROM familia WHERE nome_referencia = 'Rahimi'), TRUE),
+    ('Zahra Rahimi', 'FEMININO', '2010-10-02', 'RNM1000008', 'AF', (SELECT id FROM familia WHERE nome_referencia = 'Rahimi'), TRUE),
+    ('Síngrid Oláfsson', 'MASCULINO', '1988-08-19', 'IS5566778', 'IS',(SELECT id FROM familia WHERE nome_referencia = 'Ólafsson'), FALSE),
+    ('Javier Mendoza', 'MASCULINO', '1984-02-11', 'CO4455667', 'CO', (SELECT id FROM familia WHERE nome_referencia = 'Mendoza'), FALSE),
+    ('Camila Mendoza', 'FEMININO', '1987-09-08', 'CO7766554', 'CO', (SELECT id FROM familia WHERE nome_referencia = 'Mendoza'), FALSE),
+    ('Sofía Mendoza', 'FEMININO', '2015-01-22', 'CO1122334', 'CO', (SELECT id FROM familia WHERE nome_referencia = 'Mendoza'), FALSE),
+    ('Li Wei', 'MASCULINO', '1992-07-17', 'CN9988776', 'CN', (SELECT id FROM familia WHERE nome_referencia = 'Wei'), FALSE),
+    ('Mei Lin', 'FEMININO', '1994-12-01', 'CN6677889', 'CN', (SELECT id FROM familia WHERE nome_referencia = 'Wei'), FALSE),
+    ('Andrés Ferreira Silva', 'MASCULINO', '1985-05-13', 'UY1239988', 'UY',(SELECT id FROM familia WHERE nome_referencia = 'Ferreira Silva'), FALSE),
+    ('Valentina Ferreira Silva', 'FEMININO', '1989-10-29', 'UY7788123', 'UY', (SELECT id FROM familia WHERE nome_referencia = 'Ferreira Silva'), FALSE),
+	('Marc Schleck', 'MASCULINO', '1980-03-12', 'LU9001001', 'LU', (SELECT id FROM familia WHERE nome_referencia = 'Schleck'), FALSE),
+    ('Claire Schleck', 'FEMININO', '1983-07-24', 'LU9001002', 'LU', (SELECT id FROM familia WHERE nome_referencia = 'Schleck'), FALSE),
+    ('Lukas Bühler', 'MASCULINO', '1979-11-05', 'LI8002001', 'LI', (SELECT id FROM familia WHERE nome_referencia = 'Bühler'), FALSE),
+    ('Anna Bühler', 'FEMININO', '1982-02-17', 'LI8002002', 'LI', (SELECT id FROM familia WHERE nome_referencia = 'Bühler'), FALSE),
+    ('Matthias Meier', 'MASCULINO', '1976-06-08', 'CH7003001', 'CH', (SELECT id FROM familia WHERE nome_referencia = 'Meier'), FALSE),
+    ('Elena Meier', 'FEMININO', '1981-09-19', 'CH7003002', 'CH', (SELECT id FROM familia WHERE nome_referencia = 'Meier'), FALSE),
+    ('Erik Johansen', 'MASCULINO', '1988-01-14', 'NO6004001', 'NO', (SELECT id FROM familia WHERE nome_referencia = 'Johansen'), FALSE),
+    ('Ingrid Johansen', 'FEMININO', '1990-12-03', 'NO6004002', 'NO', (SELECT id FROM familia WHERE nome_referencia = 'Johansen'), FALSE),
+    ('Wei Tan', 'MASCULINO', '1985-04-21', 'SG5005001', 'SG', (SELECT id FROM familia WHERE nome_referencia = 'Tan'), FALSE),
+    ('Mei Tan', 'FEMININO', '1987-08-09', 'SG5005002', 'SG', (SELECT id FROM familia WHERE nome_referencia = 'Tan'), FALSE),
+    ('Hiroshi Nakamura', 'MASCULINO', '1974-10-30', 'JP4006001', 'JP', (SELECT id FROM familia WHERE nome_referencia = 'Nakamura'), FALSE),
+    ('Aiko Nakamura', 'FEMININO', '1978-05-18', 'JP4006002', 'JP', (SELECT id FROM familia WHERE nome_referencia = 'Nakamura'), FALSE),
+    ('Kemal Yilmaz', 'MASCULINO', '1986-02-04', 'TR3007001', 'TR', (SELECT id FROM familia WHERE nome_referencia = 'Yilmaz'), FALSE),
+    ('Elif Yilmaz', 'FEMININO', '1989-06-11', 'TR3007002', 'TR', (SELECT id FROM familia WHERE nome_referencia = 'Yilmaz'), FALSE),
+    ('Jean Rakoto', 'MASCULINO', '1983-09-15', 'MG2008001', 'MG', (SELECT id FROM familia WHERE nome_referencia = 'Rakoto'), FALSE),
+    ('Noro Rakoto', 'FEMININO', '1986-03-28', 'MG2008002', 'MG', (SELECT id FROM familia WHERE nome_referencia = 'Rakoto'), FALSE),
+    ('Fara Rakoto', 'FEMININO', '2012-07-07', 'MG2008003', 'MG', (SELECT id FROM familia WHERE nome_referencia = 'Rakoto'), FALSE),
+    ('Amin Chowdhury', 'MASCULINO', '1981-01-10', 'BD1009001', 'BD', (SELECT id FROM familia WHERE nome_referencia = 'Chowdhury'), FALSE),
+    ('Nasima Chowdhury', 'FEMININO', '1985-11-23', 'BD1009002', 'BD', (SELECT id FROM familia WHERE nome_referencia = 'Chowdhury'), FALSE),
+    ('Rafi Chowdhury', 'MASCULINO', '2014-04-02', 'BD1009003', 'BD', (SELECT id FROM familia WHERE nome_referencia = 'Chowdhury'), FALSE),
+    ('Omar Hassan', 'MASCULINO', '1977-12-20', 'RNM2000001', 'SD', (SELECT id FROM familia WHERE nome_referencia = 'Hassan'), TRUE),
+    ('Samira Hassan', 'FEMININO', '1980-08-06', 'RNM2000002', 'SD', (SELECT id FROM familia WHERE nome_referencia = 'Hassan'), TRUE),
+    ('Nabil Al-Hadid', 'MASCULINO', '1984-05-09', 'RNM2000003', 'YE', (SELECT id FROM familia WHERE nome_referencia = 'Al-Hadid'), TRUE),
+    ('Mariam Al-Hadid', 'FEMININO', '1988-10-26', 'RNM2000004', 'YE', (SELECT id FROM familia WHERE nome_referencia = 'Al-Hadid'), TRUE),
+    ('Salma Al-Hadid', 'FEMININO', '2016-01-13', 'RNM2000005', 'YE', (SELECT id FROM familia WHERE nome_referencia = 'Al-Hadid'), TRUE),
+    ('Tariq Kabua', 'MASCULINO', '1991-03-03', 'MH3001001', 'MH', (SELECT id FROM familia WHERE nome_referencia = 'Kabua'), FALSE),
+    ('Lina Kabua', 'FEMININO', '1994-09-29', 'MH3001002', 'MH', (SELECT id FROM familia WHERE nome_referencia = 'Kabua'), FALSE);
+;
 
-	
+
 INSERT INTO familia_alojamento (
     id_familia,
     id_alojamento
 )
 VALUES
-    (1, 1),   
-    (3, 8),   
-    (4, 2),  
-    (5, 11);  
+	((SELECT id FROM familia WHERE nome_referencia = 'Ahmed'), 1),
+	((SELECT id FROM familia WHERE nome_referencia = 'Jean-Baptiste'), 8),
+	((SELECT id FROM familia WHERE nome_referencia = 'Rahimi'), 2),
+	((SELECT id FROM familia WHERE nome_referencia = 'Ólafsson'), 11),
+    ((SELECT id FROM familia WHERE nome_referencia = 'Schleck'), 12),      -- Luxemburgo: 110m², R$ 3600
+    ((SELECT id FROM familia WHERE nome_referencia = 'Bühler'), 13),       -- Liechtenstein: 140m², R$ 2800
+    ((SELECT id FROM familia WHERE nome_referencia = 'Meier'), 17),        -- Suíça: 135m², R$ 2600
+    ((SELECT id FROM familia WHERE nome_referencia = 'Johansen'), 14),     -- Noruega: 160m², R$ 2400
+    ((SELECT id FROM familia WHERE nome_referencia = 'Tan'), 18),          -- Singapura: 155m², R$ 2100
+    ((SELECT id FROM familia WHERE nome_referencia = 'Nakamura'), 16),     -- Japão: 180m², R$ 1900
+    ((SELECT id FROM familia WHERE nome_referencia = 'Rakoto'), 6),        -- Madagascar: 95m², R$ 1300
+    ((SELECT id FROM familia WHERE nome_referencia = 'Chowdhury'), 5),     -- Bangladesh: 82m², R$ 1450
+    ((SELECT id FROM familia WHERE nome_referencia = 'Hassan'), 10),       -- Sudão: 88m², R$ 1500
+    ((SELECT id FROM familia WHERE nome_referencia = 'Al-Hadid'), 4),      -- Iêmen: 74m², R$ 1700
+    ((SELECT id FROM familia WHERE nome_referencia = 'Kabua'), 9),         -- Ilhas Marshall: 72m², R$ 1650
+    ((SELECT id FROM familia WHERE nome_referencia = 'Yilmaz'), 20);       -- Turquia: 76m², R$ 1750
+
+
 
 
