@@ -81,4 +81,6 @@ public class AlojamentoService {
 	public List<Alojamento> buscarPorProprietario(Integer proprietarioId) {
 		return alojamentoRepository.findByProprietarioId(proprietarioId);
 	}
+
+
 }

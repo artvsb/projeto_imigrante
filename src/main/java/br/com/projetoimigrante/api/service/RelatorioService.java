@@ -237,19 +237,31 @@ public class RelatorioService {
 	}
 
 	private String gerarCsv(RelatorioPersonalizadoResponseDTO relatorio) {
+		List<String> cabecalhos = relatorio.campos().stream()
+				.map(CampoRelatorioDTO::rotulo)
+				.toList();
+
+		List<List<Object>> linhas = relatorio.linhas().stream()
+				.map(linha -> relatorio.campos().stream()
+						.map(campo -> campo.tabela() + "_" + campo.campo())
+						.map(linha::get)
+						.toList())
+				.toList();
+
+		return gerarCsv(cabecalhos, linhas);
+	}
+
+	private String gerarCsv(List<String> cabecalhos, List<List<Object>> linhas) {
 		StringBuilder csv = new StringBuilder();
 
-		String cabecalho = relatorio.campos().stream()
-				.map(CampoRelatorioDTO::rotulo)
+		String cabecalho = cabecalhos.stream()
 				.map(this::formatarValorCsv)
 				.collect(Collectors.joining(";"));
 
 		csv.append(cabecalho).append("\n");
 
-		for (Map<String, Object> linha : relatorio.linhas()) {
-			String valores = relatorio.campos().stream()
-					.map(campo -> campo.tabela() + "_" + campo.campo())
-					.map(chave -> linha.get(chave))
+		for (List<Object> linha : linhas) {
+			String valores = linha.stream()
 					.map(valor -> valor == null ? "" : valor.toString())
 					.map(this::formatarValorCsv)
 					.collect(Collectors.joining(";"));
@@ -272,5 +284,95 @@ public class RelatorioService {
 				gerarRelatorioPersonalizadoProprietario(request);
 
 		return gerarCsv(relatorio);
+	}
+
+	public String exportarOrigemPorEstadoCsv() {
+		List<OrigemPorEstadoViewDTO> dados = buscarOrigemPorEstado();
+
+		return gerarCsv(
+				List.of("Estado", "País", "Quantidade de imigrantes"),
+				dados.stream()
+						.map(item -> List.of(
+								(Object) item.getEstado(),
+								item.getPais(),
+								item.getQtdImigrantes()
+						))
+						.toList()
+		);
+	}
+
+	public String exportarCustoImigrantePaisCsv() {
+		List<CustoImigrantePaisViewDTO> dados = buscarCustoImigrantePais();
+
+		return gerarCsv(
+				List.of("ID", "País", "Quantidade de imigrantes", "Custo/Imigrante por País"),
+				dados.stream()
+						.map(item -> List.of(
+								(Object) item.getIdPais(),
+								item.getNomePais(),
+								item.getQtdImigrantes(),
+								item.getCustoMedioPessoa()
+						))
+						.toList()
+		);
+	}
+
+	public String exportarResumoAlojamentosCsv() {
+		List<CustoImigrantePaisViewDTO> dados = buscarCustoImigrantePais();
+
+		return gerarCsv(
+				List.of("ID", "País", "Quantidade de imigrantes", "Custo/Imigrante por País"),
+				dados.stream()
+						.map(item -> List.of(
+								(Object) item.getIdPais(),
+								item.getNomePais(),
+								item.getQtdImigrantes(),
+								item.getCustoMedioPessoa()
+						))
+						.toList()
+		);
+	}
+
+	public String exportarResumoImigrantesCsv() {
+		List<ImigranteResumoViewDTO> dados = buscarResumoImigrantes();
+
+		return gerarCsv(
+				List.of("Nome", "Data de nascimento", "País de origem"),
+				dados.stream()
+						.map(item -> List.of(
+								(Object) item.getNome(),
+								item.getDataNascimento(),
+								item.getPaisOrigem()
+						))
+						.toList()
+		);
+	}
+
+	public List<AlojamentoDisponivelViewDTO> buscarAlojamentosDisponiveis() {
+		return relatorioRepository.buscarAlojamentosDisponiveis();
+	}
+
+	public String alojamentosDisponiveisCsv() {
+		List<AlojamentoDisponivelViewDTO> dados = buscarAlojamentosDisponiveis();
+
+		return gerarCsv(
+				List.of("ID", "Tamanho em m2", "Custo Mensal", "Status", "Logradouro",
+						"Cidade", "Estado", "CEP", "ID do Proprietário", "Telefone", "E-mail"),
+				dados.stream()
+						.map(item -> List.of(
+								(Object) item.getIdAlojamento(),
+								item.getTamanhoM2(),
+								item.getCustoMensal(),
+								item.getStatus(),
+								item.getLogradouro(),
+								item.getCidade(),
+								item.getEstado(),
+								item.getIdProprietario(),
+								item.getNomeProprietario(),
+								item.getTelefoneProprietario(),
+								item.getEmailProprietario()
+						))
+						.toList()
+		);
 	}
 }

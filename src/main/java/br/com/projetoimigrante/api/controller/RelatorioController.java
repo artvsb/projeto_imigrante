@@ -39,7 +39,7 @@ public class RelatorioController {
 		return relatorioService.buscarQtdImigrantesPorRegiao();
 	}
 
-	@GetMapping("/custo-por-imigrante-por-pais")
+	@GetMapping("/custo-imigrante-pais")
 	@ResponseStatus(HttpStatus.OK)
 	public List<CustoImigrantePaisViewDTO> buscarCustoImigrantePais() {
 		return relatorioService.buscarCustoImigrantePais();
@@ -91,6 +91,39 @@ public class RelatorioController {
 		return ResponseEntity.ok()
 				.header("Content-Disposition", "attachment; filename=relatorio-proprietarios.csv")
 				.body(csv);
+	}
+
+	@GetMapping(value = "/origem-por-estado/csv", produces = "text/csv")
+	public ResponseEntity<String> exportarOrigemPorEstadoCsv() {
+		return ResponseEntity.ok()
+				.header("Content-Disposition", "attachment; filename=origem-por-estado.csv")
+				.body(relatorioService.exportarOrigemPorEstadoCsv());
+	}
+
+	@GetMapping(value = "/custo-imigrante-pais/csv", produces = "text/csv")
+	public ResponseEntity<String> exportarCustoImigrantePaisCsv() {
+		return ResponseEntity.ok()
+				.header("Content-Disposition", "attachment; filename=origem-por-estado.csv")
+				.body(relatorioService.exportarCustoImigrantePaisCsv());
+	}
+
+	@GetMapping(value = "/resumo/csv", produces = "text/csv")
+	public ResponseEntity<String> exportarResumoImigrantesCsv() {
+		return ResponseEntity.ok()
+				.header("Content-Disposition", "attachment; filename=resumo-imigrantes.csv")
+				.body(relatorioService.exportarResumoImigrantesCsv());
+	}
+
+	@GetMapping("/alojamentos-disponiveis")
+	public List<AlojamentoDisponivelViewDTO> buscarAlojamentosDisponiveis() {
+		return relatorioService.buscarAlojamentosDisponiveis();
+	}
+
+	@GetMapping(value = "/alojamentos-disponiveis/csv", produces = "text/csv")
+	public ResponseEntity<String> buscarAlojamentosDisponiveisCsv() {
+		return ResponseEntity.ok()
+				.header("Content-Disposition", "attachment; filename=resumo-imigrantes.csv")
+				.body(relatorioService.alojamentosDisponiveisCsv());
 	}
 
 }

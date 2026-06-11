@@ -1,9 +1,6 @@
 package br.com.projetoimigrante.api.repository;
 
-import br.com.projetoimigrante.api.dto.CustoImigrantePaisViewDTO;
-import br.com.projetoimigrante.api.dto.ImigranteResumoViewDTO;
-import br.com.projetoimigrante.api.dto.OrigemPorEstadoViewDTO;
-import br.com.projetoimigrante.api.dto.QtdImigrantesPorRegiaoViewDTO;
+import br.com.projetoimigrante.api.dto.*;
 import br.com.projetoimigrante.api.model.Familia;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -59,5 +56,23 @@ public interface RelatorioRepository extends JpaRepository<Familia, Integer> {
 			FROM vw_custo_por_imigrante_por_pais	
 			""", nativeQuery = true)
 	List<CustoImigrantePaisViewDTO> buscarCustoImigrantePais();
+
+	@Query(value = """
+    SELECT
+        id_alojamento AS idAlojamento,
+        tamanho_m2 AS tamanhoM2,
+        custo_mensal AS custoMensal,
+        status,
+        logradouro,
+        cidade,
+        estado,
+        cep,
+        id_proprietario AS idProprietario,
+        nome_proprietario AS nomeProprietario,
+        telefone_proprietario AS telefoneProprietario,
+        email_proprietario AS emailProprietario
+    FROM vw_alojamentos_disponiveis
+""", nativeQuery = true)
+	List<AlojamentoDisponivelViewDTO> buscarAlojamentosDisponiveis();
 
 }
